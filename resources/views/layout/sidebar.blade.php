@@ -6,7 +6,7 @@
   <div class="sidebar-brand-icon rotate-n-15">
     <i class="fas fa-laugh-wink"></i>
   </div>
-  <div class="sidebar-brand-text mx-3">QCG</div>
+  <div class="sidebar-brand-text mx-3">ArthaRide</div>
 </a>
 
 <!-- Divider -->
@@ -24,7 +24,7 @@
 
 <!-- Heading -->
 <div class="sidebar-heading">
-  Interface
+  Kelola Kendaraan
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
@@ -61,7 +61,7 @@
 
 <!-- Heading -->
 <div class="sidebar-heading">
-  Addons
+  Sewa Kendaraan
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
