@@ -1,0 +1,17 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class BPKB extends Model
+{
+    protected $table = 'b_p_k_b_s';
+    protected $primaryKey = 'id';
+    protected $fillable = ['no_polisi', 'nama', 'posisi','approval'];
+
+    public function kendaraan()
+    {
+        return $this->belongsTo(Kendaraan::class, 'no_polisi', 'no_polisi');
+    }
+}

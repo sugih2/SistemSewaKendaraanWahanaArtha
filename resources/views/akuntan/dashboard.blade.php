@@ -8,7 +8,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  @include('layout.sidebar')
+  @include('layout.akuntan_sidebar')
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">

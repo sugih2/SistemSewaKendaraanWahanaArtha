@@ -8,7 +8,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  @include('layout.sidebar')
+  @include('layout.pengurus_sidebar')
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">

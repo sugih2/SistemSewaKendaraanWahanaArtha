@@ -19,3 +19,5 @@ Auth::routes();
 
 // Route::get('/', 'HomeController@dashboard');
 Route::get('/home', 'HomeController@dashboard')->name('home');
+
+Route::resource('/kendaraan', 'KendaraanController');
