@@ -25,7 +25,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Halo Admin</h1>
+            <h1 class="h3 mb-0 text-gray-800">Data Kendaraan Sewa</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
@@ -42,30 +42,82 @@
         </div><br />
     @endif
 
-    <form method="post" action="{{ route('kendaraan.store') }}">
+    <form method="POST" action="{{ route('kendaraan.store') }}">
         @csrf
-        <div class="form-group">
-          <label for="no_paket">No-Paket</label>
-          <input type="text" class="form-control" name="no_paket">
+        <div class="form-group row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <label for="">Jenis Kendaraan</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          <div class="col-sm-6">
+            <label for="">No Polisi</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          
         </div>
-        <div class="form-group">
-          <label for="nama_paket">Nama Paket</label>
-          <input type="text" class="form-control" name="nama_paket">
+
+        <div class="form-group row">
+          <label for="">Merk</label>
+          <input type="text" class="form-control" name="">
         </div>
-        <div class="form-group">
-          <label for="harga_paket">Harga</label>
-          <input type="text" class="form-control" name="harga_paket">
+        <div class="form-group row">
+            <label for="">No Rangka</label>
+            <input type="text" class="form-control" name="">
         </div>
-        <div class="form-group">
-            <label for="keterangan">Keterangan</label>
-            <textarea name="keterangan" id="keterangan" cols="30" rows="10" class="form-control"></textarea>
+        <div class="form-group row">
+          <label for="">Tipe</label>
+          <input type="text" class="form-control" name="">
         </div>
-        <div class="form-group">
-            <input type="submit" class="btn btn-success" value="Simpan">
+        <div class="form-group row">
+          <label for="">No Mesin</label>
+          <input type="text" class="form-control" name="">
+        </div>
+        <div class="form-group row">
+          <label for="">Tahun Rakitan</label>
+          <input type="text" class="form-control" name="">
+        </div>
+        <div class="form-group row">
+          <label for="">Lokasi Kendaraan</label>
+          <input type="text" class="form-control" name="">
+        </div>
+        <div class="form-group row">
+          <label for="">Warna</label>
+          <input type="text" class="form-control" name="">
+        </div>
+        <div class="form-group row">
+          <label for="">Status</label>
+          <input type="text" class="form-control" name="">
+        </div>
+        <div class="form-group row">
+          <label for="">Tanggal Pembelian</label>
+          <input type="text" class="form-control" name="">
+        </div>
+        <div class="form-group row">
+          <label for="">Karoseri</label>
+          <input type="text" class="form-control" name="">
+        </div>
+        <div class="form-group row">
+          <label for="">Harga Off</label>
+          <input type="text" class="form-control" name="">
+        </div>
+        <div class="form-group row">
+          <label for="">Total Pembelian</label>
+          <input type="text" class="form-control" name="">
+        </div>
+        <div class="form-group row">
+          <label for="">BBN</label>
+          <input type="text" class="form-control" name="">
+        </div>
+        <div class="form-group row">
+          <label for="">Status</label>
+          <input type="text" class="form-control" name="">
+        </div>
+        <div class="form-group row">
+            <input type="submit" class="btn btn-success" value="Submit">
         </div>
       </form>
             
-
+          </div>
             </div>
         <!-- /.container-fluid -->
 

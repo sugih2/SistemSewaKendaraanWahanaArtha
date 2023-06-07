@@ -25,14 +25,17 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Halo Admin</h1>
+            <h1 class="h3 mb-0 text-gray-800">Data Kendaraan</h1>
+            <a href={{ route('kendaraan.create') }} class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-plus fa-sm text-white-50"></i> Tambah Kendaraan</a>
+            <a href={{ '#' }} class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-minus fa-sm text-white-50"></i> Jual Kendaraan</a>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
           <!-- Content Row -->
           <div class="row">
-            <a href={{ route('kendaraan.create') }} class="btn btn-success">Tambah Paket</a>
         <table class="table">
             <thead>
                 <tr>
@@ -72,7 +75,7 @@
             </tbody>
         </table>
             
-
+          </div>
             </div>
         <!-- /.container-fluid -->
 

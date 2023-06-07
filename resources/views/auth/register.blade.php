@@ -40,7 +40,7 @@
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
                             <form class="user" method="POST" action="{{ route('register') }}">
-
+                                @csrf
                                 <div class="form-group">
 									<input id="name" type="text" placeholder="Name" class="form-control form-control-user @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -52,7 +52,7 @@
                                 </div>
 								
 								<div class="form-group">
-									<input id="username" type="text" placeholder="Username" class="form-control form-control-user @error('username') is-invalid @enderror" name="Username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+									<input id="username" type="text" placeholder="Username" class="form-control form-control-user @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
 									@error('username')
 										<span class="invalid-feedback" role="alert">
@@ -62,7 +62,7 @@
                                 </div>
 								
 								<div class="form-group">
-									<select id="role" class="form-control form-control-user{{ $errors->has('role') ? ' is-invalid' : ''}}" name="role" value="{{ old('role') }}" required autofocus>
+									<select id="role" placeholder="Pilih Role" class="form-control form-control-user{{ $errors->has('role') ? ' is-invalid' : ''}}" name="role" value="{{ old('role') }}" required autofocus>
 										<option value="Admin" selected>Admin</option>
 										<option value="Pengurus">Pengurus</option>
 										<option value="Akuntan">Akuntan</option>
@@ -75,7 +75,7 @@
                                 </div>
 								
 								<div class="form-group">
-									<input id="password" type="password" placeholder="Password" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" required autocomplete="new-password")>
+									<input id="password" type="password" placeholder="Password" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
 									@error('password')
 										<span class="invalid-feedback" role="alert">
