@@ -105,7 +105,33 @@
     <div class="sidebar-heading">
       Service Kendaraan
     </div>
-    
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseService" aria-expanded="true" aria-controls="collapseService">
+        <i class="fas fa-fw fa-cogs"></i>
+        <span>Service</span>
+      </a>
+      <div id="collapseService" class="collapse" aria-labelledby="headingService" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Kelola Pendataan Service</h6>
+          <a class="collapse-item" href="#">Tambah Data Service</a>
+          <a class="collapse-item" href="#">Sejarah Service</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBengkel" aria-expanded="true" aria-controls="collapseBengkel">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Bengkel</span>
+      </a>
+      <div id="collapseBengkel" class="collapse" aria-labelledby="headingBengkel" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Kelola Pendataan Bengkel</h6>
+          <a class="collapse-item" href="#">Tambah Data Bengkel</a>
+          <a class="collapse-item" href="#">Data Bengkel</a>
+        </div>
+      </div>
+    </li>
     
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
