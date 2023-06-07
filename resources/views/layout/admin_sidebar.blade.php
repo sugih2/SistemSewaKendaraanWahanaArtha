@@ -14,7 +14,7 @@
     
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="{{ route('home')}}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
@@ -36,9 +36,9 @@
       <div id="collapseKendaraan" class="collapse" aria-labelledby="headingKendaraan" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Kelola Kendaraan</h6>
+          <a class="collapse-item" href="{{ url('/kendaraan') }}">Data Kendaraan</a>
           <a class="collapse-item" href="#">Tambah Kendaraan</a>
           <a class="collapse-item" href="#">Jual Kendaraan</a>
-          <a class="collapse-item" href="#">Data Kendaraan</a>
         </div>
       </div>
     </li>
@@ -81,7 +81,23 @@
     <div class="sidebar-heading">
       Sewa Kendaraan
     </div>
-    
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSewa" aria-expanded="true" aria-controls="collapseSewa">
+        <i class="fas fa-fw fa-address-book"></i>
+        <span>Sewa</span>
+      </a>
+      <div id="collapseSewa" class="collapse" aria-labelledby="headingSewa" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Kelola Transaksi Sewa</h6>
+          <a class="collapse-item" href="#">Data Transaksi</a>
+          <a class="collapse-item" href="#">Tambah Sewa</a>
+          <a class="collapse-item" href="#">Pengembalian</a>
+          <a class="collapse-item" href="#">Pemberhentian</a>
+          <a class="collapse-item" href="#">Penggantian Permanen</a>
+          <a class="collapse-item" href="#">Penggantian Sementara</a>
+        </div>
+      </div>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
     

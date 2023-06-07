@@ -15,7 +15,7 @@ class KendaraanController extends Controller
     public function index()
     {
         $kendaraans = Kendaraan::all();
-        return view('kendaraan.index', compact('kendaraans'));
+        return view('admin.kendaraan.index', compact('kendaraans'));
     }
 
     /**
@@ -25,7 +25,7 @@ class KendaraanController extends Controller
      */
     public function create()
     {
-        return view('kendaraan.create');
+        return view('admin.kendaraan.create');
     }
 
     /**
