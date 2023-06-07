@@ -37,7 +37,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Kelola Kendaraan</h6>
           <a class="collapse-item" href="{{ url('/kendaraan') }}">Data Kendaraan</a>
-          <a class="collapse-item" href="#">Tambah Kendaraan</a>
+          <a class="collapse-item" href="{{ route('kendaraan.create') }}">Tambah Kendaraan</a>
           <a class="collapse-item" href="#">Jual Kendaraan</a>
         </div>
       </div>

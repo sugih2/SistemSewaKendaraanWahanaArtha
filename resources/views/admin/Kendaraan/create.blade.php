@@ -25,9 +25,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Data Kendaraan Sewa</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <h1 class="h3 mb-0 text-gray-800">Penambahan Kendaraan Sewa</h1>
           </div>
 
           <!-- Content Row -->
@@ -42,10 +40,11 @@
         </div><br />
     @endif
 
-    <form method="POST" action="{{ route('kendaraan.store') }}">
+    <form method="post" action="{{ route('kendaraan.store') }}" class="container-fluid">
         @csrf
+        <h4 class="h4 mb-10 text-gray-800">1. Data Kendaraan</h4>
         <div class="form-group row">
-          <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="col-sm-6  mb-3 mb-sm-0">
             <label for="">Jenis Kendaraan</label>
             <input type="text" class="form-control" name="">
           </div>
@@ -53,67 +52,125 @@
             <label for="">No Polisi</label>
             <input type="text" class="form-control" name="">
           </div>
-          
-        </div>
-
-        <div class="form-group row">
-          <label for="">Merk</label>
-          <input type="text" class="form-control" name="">
         </div>
         <div class="form-group row">
+          <div class="col-sm-6  mb-3 mb-sm-0">
+            <label for="">Merk</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          <div class="col-sm-6">
             <label for="">No Rangka</label>
             <input type="text" class="form-control" name="">
+          </div>
         </div>
         <div class="form-group row">
-          <label for="">Tipe</label>
-          <input type="text" class="form-control" name="">
+          <div class="col-sm-6  mb-3 mb-sm-0">
+            <label for="">Tipe</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          <div class="col-sm-6">
+            <label for="">No Mesin</label>
+            <input type="text" class="form-control" name="">
+          </div>
         </div>
         <div class="form-group row">
-          <label for="">No Mesin</label>
-          <input type="text" class="form-control" name="">
+          <div class="col-sm-6  mb-3 mb-sm-0">
+            <label for="">Tahun Rakitan</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          <div class="col-sm-6">
+            <label for="">Lokasi Kendaraan</label>
+            <input type="text" class="form-control" name="">
+          </div>
         </div>
         <div class="form-group row">
-          <label for="">Tahun Rakitan</label>
-          <input type="text" class="form-control" name="">
+          <div class="col-sm-6  mb-3 mb-sm-0">
+            <label for="">Warna</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          <div class="col-sm-6">
+            <label for="">Status</label>
+            <input type="text" class="form-control" name="">
+          </div>
+        </div>
+        <h4 class="h4 mb-10 text-gray-800">2. Data Pembelian</h4>
+        <div class="form-group row">
+          <div class="col-sm-6  mb-3 mb-sm-0">
+            <label for="">Tanggal Pembelian</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          <div class="col-sm-6">
+            <label for="">Karoseri</label>
+            <input type="text" class="form-control" name="">
+          </div>
         </div>
         <div class="form-group row">
-          <label for="">Lokasi Kendaraan</label>
-          <input type="text" class="form-control" name="">
+          <div class="col-sm-6  mb-3 mb-sm-0">
+            <label for="">Harga Off</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          <div class="col-sm-6">
+            <label for="">Total Pembelian</label>
+            <input type="text" class="form-control" name="">
+          </div>
         </div>
         <div class="form-group row">
-          <label for="">Warna</label>
-          <input type="text" class="form-control" name="">
+          <div class="col-sm-6  mb-3 mb-sm-0">
+            <label for="">BBN</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          <div class="col-sm-6">
+            <label for="">Harga Sewa</label>
+            <input type="text" class="form-control" name="">
+          </div>
+        </div>
+        <h4 class="h4 mb-10 text-gray-800">3. Data BPKB</h4>
+        <div class="form-group row">
+          <div class="col-sm-6  mb-3 mb-sm-0">
+            <label for="">Nama Pemegang</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          <div class="col-sm-6">
+            <label for="">Posisi BPKB</label>
+            <input type="text" class="form-control" name="">
+          </div>
+        </div>
+        <h4 class="h4 mb-10 text-gray-800">4. Data STNK</h4>
+        <div class="form-group row">
+          <div class="col-sm-6  mb-3 mb-sm-0">
+            <label for="">Tanggal Jatuh Tempo</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          <div class="col-sm-6">
+            <label for="">Tanggal Bayar</label>
+            <input type="text" class="form-control" name="">
+          </div>
         </div>
         <div class="form-group row">
-          <label for="">Status</label>
-          <input type="text" class="form-control" name="">
+          <div class="col-sm-12">
+            <label for="">Jumlah Bayar</label>
+            <input type="text" class="form-control" name="">
+          </div>
+        </div>
+        <h4 class="h4 mb-10 text-gray-800">5. Data KIR</h4>
+        <div class="form-group row">
+          <div class="col-sm-6  mb-3 mb-sm-0">
+            <label for="">Tanggal Jatuh Tempo</label>
+            <input type="text" class="form-control" name="">
+          </div>
+          <div class="col-sm-6">
+            <label for="">Tanggal Bayar</label>
+            <input type="text" class="form-control" name="">
+          </div>
         </div>
         <div class="form-group row">
-          <label for="">Tanggal Pembelian</label>
-          <input type="text" class="form-control" name="">
+          <div class="col-sm-12">
+            <label for="">Jumlah Bayar</label>
+            <input type="text" class="form-control" name="">
+          </div>
         </div>
-        <div class="form-group row">
-          <label for="">Karoseri</label>
-          <input type="text" class="form-control" name="">
-        </div>
-        <div class="form-group row">
-          <label for="">Harga Off</label>
-          <input type="text" class="form-control" name="">
-        </div>
-        <div class="form-group row">
-          <label for="">Total Pembelian</label>
-          <input type="text" class="form-control" name="">
-        </div>
-        <div class="form-group row">
-          <label for="">BBN</label>
-          <input type="text" class="form-control" name="">
-        </div>
-        <div class="form-group row">
-          <label for="">Status</label>
-          <input type="text" class="form-control" name="">
-        </div>
-        <div class="form-group row">
-            <input type="submit" class="btn btn-success" value="Submit">
+        <div class="form-group row col-sm-6  mb-3 mb-sm-0">
+            <input type="submit" class=" btn btn-sm btn-primary shadow-sm" value="Submit">
         </div>
       </form>
             
