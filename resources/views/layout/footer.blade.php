@@ -7,6 +7,8 @@
         </div>
       </footer>
       <!-- End of Footer -->
+<!-- CSRF Token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
@@ -65,3 +67,10 @@
     $('.select2').select2()
   })
 </script>
+
+    <!-- Page level plugins -->
+    <script src="{{ asset('admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('admin/js/demo/datatables-demo.js')}}"></script>
