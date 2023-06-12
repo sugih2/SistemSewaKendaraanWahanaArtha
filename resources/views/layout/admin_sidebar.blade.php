@@ -52,9 +52,9 @@
       <div id="collapseSurat" class="collapse" aria-labelledby="headingSurat" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Kelola Surat Kendaraan</h6>
-          <a class="collapse-item" href="#">Kelola Data BPKB</a>
-          <a class="collapse-item" href="#">Kelola Data STNK</a>
-          <a class="collapse-item" href="#">Kelola Data KIR</a>
+          <a class="collapse-item" href="bpkb">Kelola Data BPKB</a>
+          <a class="collapse-item" href="stnk">Kelola Data STNK</a>
+          <a class="collapse-item" href="kir">Kelola Data KIR</a>
         </div>
       </div>
     </li>

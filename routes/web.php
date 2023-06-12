@@ -22,3 +22,6 @@ Route::get('/home', 'HomeController@dashboard')->name('home');
 
 Route::resource('/kendaraan', 'KendaraanController');
 Route::resource('/service', 'ServiceController');
+Route::resource('/bpkb', 'BpkbController');
+Route::resource('/stnk', 'StnkController');
+Route::resource('/kir', 'KirController');
