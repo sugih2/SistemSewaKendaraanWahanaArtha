@@ -113,8 +113,8 @@
       <div id="collapseService" class="collapse" aria-labelledby="headingService" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Kelola Pendataan Service</h6>
-          <a class="collapse-item" href="#">Tambah Data Service</a>
-          <a class="collapse-item" href="#">Sejarah Service</a>
+          <a class="collapse-item" href="{{ url('/service/create') }}">Tambah Data Service</a>
+          <a class="collapse-item" href="{{ url('/kendaraan') }}">Sejarah Service</a>
         </div>
       </div>
     </li>
