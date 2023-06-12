@@ -113,7 +113,7 @@
         <div class="form-group row">
           <div class="col-sm-6  mb-3 mb-sm-0">
             <label for="">Tanggal Pembelian</label>
-            <input type="date" class="form-control" name="tanggal_pembelian" max="{{ date('Y-m-d') }}">
+            <input type="date" class="form-control" name="tanggal_beli" max="{{ date('Y-m-d') }}">
           </div>
           <div class="col-sm-6">
             <label for="">Karoseri</label>

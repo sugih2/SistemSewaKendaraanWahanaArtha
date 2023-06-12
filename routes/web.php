@@ -21,4 +21,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@dashboard')->name('home');
 
 Route::resource('/kendaraan', 'KendaraanController');
+Route::put('/kendaraan/{id}/approved', 'KendaraanController@approved')->name('kendaraan.approved');
+Route::put('/kendaraan/{id}/reject', 'KendaraanController@reject')->name('kendaraan.reject');
 Route::resource('/service', 'ServiceController');
