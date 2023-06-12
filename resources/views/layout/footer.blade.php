@@ -2,7 +2,7 @@
  <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2023</span>
+            <span>Copyright &copy; PT Wahana Arthadinamika 2023</span>
           </div>
         </div>
       </footer>
@@ -74,3 +74,6 @@
     
     <!-- Page level custom scripts -->
     <script src="{{ asset('admin/js/demo/datatables-demo.js')}}"></script>
+
+  <!-- Format Rupiah dan pemisah ribuan -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>

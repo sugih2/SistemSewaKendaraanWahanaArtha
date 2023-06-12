@@ -8,7 +8,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  @include('layout.admin_sidebar')
+  @include('layout.pengurus_sidebar')
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -137,7 +137,7 @@
           </div>
           <div class="col-sm-6">
             <label for="">Harga Sewa</label>
-            <input type="text" class="form-control" placeholder="Rp." name="harga_sewa" id="harga_sewa">
+            <input type="text" class="form-control" name="harga_sewa">
           </div>
         </div>
         <h4 class="h4 mb-10 text-gray-800">3. Data BPKB</h4>
@@ -165,7 +165,7 @@
         <div class="form-group row">
           <div class="col-sm-12">
             <label for="">Jumlah Bayar</label>
-            <input type="text" class="form-control" placeholder="Rp." name="biaya_stnk" id="biaya_stnk">
+            <input type="text" class="form-control" name="biaya_stnk">
           </div>
         </div>
         <h4 class="h4 mb-10 text-gray-800">5. Data KIR</h4>
@@ -182,7 +182,7 @@
         <div class="form-group row">
           <div class="col-sm-12">
             <label for="">Jumlah Bayar</label>
-            <input type="text" class="form-control" placeholder="Rp." name="biaya_kir" id="biaya_kir">
+            <input type="text" class="form-control" name="biaya_kir">
           </div>
         </div>
         <input type="text" class="form-control" name="approval" value="Proses Approval" hidden>
@@ -209,7 +209,7 @@
 
   <script>
     $(document).ready(function() {
-      $('#karoseri, #harga_off, #bbn, #biaya_stnk, #biaya_kir, #harga_sewa').on('input', function() {
+      $('#karoseri, #harga_off, #bbn').on('input', function() {
             var value = $(this).val();
             if (value !== '') {
                 value = value.replace(/[^\d]/g, ''); // Menghapus semua karakter selain angka

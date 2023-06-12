@@ -17,9 +17,9 @@ class CreateKIRSTable extends Migration
             $table->bigIncrements('id');
             $table->string('no_polisi');
             $table->foreign('no_polisi')->references('no_polisi')->on('kendaraans')->onDelete('cascade');
-            $table->date('tanggal_jt');
-            $table->date('tanggal_bayar');
-            $table->string('biaya');
+            $table->date('tanggal_jt_kir');
+            $table->date('tanggal_bayar_kir');
+            $table->string('biaya_kir');
             $table->string('approval');
             $table->timestamps();
         });

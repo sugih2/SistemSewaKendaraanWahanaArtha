@@ -17,9 +17,9 @@ class CreateSTNKSTable extends Migration
             $table->bigIncrements('id');
             $table->string('no_polisi');
             $table->foreign('no_polisi')->references('no_polisi')->on('kendaraans')->onDelete('cascade');
-            $table->date('tanggal_jt');
-            $table->date('tanggal_bayar');
-            $table->string('biaya');
+            $table->date('tanggal_jt_stnk');
+            $table->date('tanggal_bayar_stnk');
+            $table->string('biaya_stnk');
             $table->string('approval');
             $table->timestamps();
         });

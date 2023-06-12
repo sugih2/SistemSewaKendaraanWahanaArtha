@@ -8,7 +8,7 @@
   <!-- PTipe Wrapper -->
   <div id="wrapper">
 
-  @include('layout.admin_sidebar')
+  @include('layout.pengurus_sidebar')
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -25,7 +25,7 @@
 
           <!-- PTipe Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Kelola Data Kendaraan Sewa</h1>
+            <h1 class="h3 mb-0 text-gray-800">Data Kendaraan</h1>
             <a href={{ route('kendaraan.create') }} class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-plus fa-sm text-white-50"></i> Tambah Kendaraan</a>
             <a href={{ '#' }} class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
@@ -39,7 +39,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
               <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Data Kendaraan</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
               </div>
               <div class="card-body">
                   <div class="table-responsive">
@@ -54,6 +54,7 @@
                                   <th>Lokasi</th>
                                   <th>Status</th>
                                   <th>Approval</th>
+                                  <th colspan="3">Aksi</th>
                               </tr>
                           </thead>
                           <tfoot>
@@ -66,6 +67,7 @@
                                   <th>Lokasi</th>
                                   <th>Status</th>
                                   <th>Approval</th>
+                                  <th colspan="3">Aksi</th>
                               </tr>
                           </tfoot>
                           <tbody>
@@ -79,6 +81,30 @@
                                     <td>{{ $kendaraan->lokasi }}</td>
                                     <td>{{ $kendaraan->status }}</td>
                                     <td>{{ $kendaraan->approval }}</td>
+                                    <td>
+                                      <a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">Reject</span>
+                                      </a>
+                                    </td>
+                                    <td>
+                                      <a href="#" class="btn btn-success btn-icon-split btn-sm">
+                                      <span class="icon text-white-50">
+                                          <i class="fas fa-check"></i>
+                                      </span>
+                                      <span class="text">Setuju</span>
+                                      </a>
+                                    </td>
+                                    <td>
+                                      <a href="#" class="btn btn-info btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+                                        <span class="text">Detail</span>
+                                      </a>
+                                    </td>
                                 </tr>
                             @endforeach
                           </tbody>
