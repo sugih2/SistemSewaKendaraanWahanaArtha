@@ -24,15 +24,18 @@ class CreateKendaraansTable extends Migration
             $table->string('no_mesin');
             $table->string('tahun_rakitan');
             $table->string('warna');
+            $table->date('tanggal_beli');
             $table->string('harga_off');
             $table->string('bbn');
             $table->string('karoseri');
             $table->string('total');
             $table->string('tahun');
             $table->string('rate');
+            $table->string('harga_sewa');
             $table->string('lokasi');
             $table->string('status');
             $table->string('approval');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

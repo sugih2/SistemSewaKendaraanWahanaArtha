@@ -21,10 +21,10 @@ class KendaraanController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'Pengurus') {
-            $kendaraans = Kendaraan::all();
+            $kendaraans = Kendaraan::where('approval', 'Proses Approval')->get();
             return view('pengurus.kendaraan.index', compact('kendaraans'));
         } else {
-            $kendaraans = Kendaraan::all();
+            $kendaraans = Kendaraan::where('approval', 'Approved')->get();
             return view('admin.kendaraan.index', compact('kendaraans'));
         }
     }
@@ -51,7 +51,7 @@ class KendaraanController extends Controller
         BPKB::create($request->all());
         STNK::create($request->all());
         KIR::create($request->all());
-        return redirect('kendaran');
+        return redirect('kendaraan');
     }
 
     /**
@@ -60,9 +60,17 @@ class KendaraanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($no_polisi)
     {
-        //
+        $kendaraan = Kendaraan::where('no_polisi', $no_polisi)->first();
+    
+        // Jika kendaraan dengan nomor polisi tersebut ditemukan
+        if ($kendaraan) {
+            return view('pengurus.kendaraan.detail', compact('kendaraan'));
+        } else {
+            // Jika kendaraan tidak ditemukan, Anda dapat melakukan tindakan yang sesuai, misalnya menampilkan pesan error atau mengarahkan ke halaman lain
+            abort(404, 'Kendaraan tidak ditemukan');
+        }
     }
 
     /**
@@ -71,9 +79,9 @@ class KendaraanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Kendaraan $kendaraan)
     {
-        //return view('kendaraan.edit', compact('kendaraans'));
+        return view('pengurus.kendaraan.detail', compact('kendaraan'));
     }
 
     /**
@@ -87,6 +95,70 @@ class KendaraanController extends Controller
     {
         //$kendaraans->update($request->all());
         //return redirect('kendaraans');
+    }
+
+    public function approved(Request $request, $no_polisi)
+    {
+        // Cari kendaraan berdasarkan nomor polisi
+        $kendaraan = Kendaraan::where('no_polisi', $no_polisi)->first();
+        $kir = KIR::where('no_polisi', $no_polisi)->first();
+        $bpkb = BPKB::where('no_polisi', $no_polisi)->first();
+        $stnk = STNK::where('no_polisi', $no_polisi)->first();
+
+        // Lakukan validasi apakah kendaraan ditemukan atau tidak
+        if (!$kendaraan) {
+            // Jika tidak ditemukan, lakukan tindakan sesuai kebutuhan (misalnya, tampilkan pesan error)
+            return redirect()->back()->with('error', 'Kendaraan tidak ditemukan');
+        }
+
+        if (!$kir) {
+            // Ubah status kendaraan menjadi "Sudah Approve"
+            $kendaraan->approval = 'Approved';
+            $kendaraan->save();
+            $bpkb->approval = 'Approved';
+            $bpkb->save();
+            $stnk->approval = 'Approved';
+            $stnk->save();
+        } else {
+            // Ubah status kendaraan menjadi "Sudah Approve"
+            $kendaraan->approval = 'Approved';
+            $kendaraan->save();
+            $bpkb->approval = 'Approved';
+            $bpkb->save();
+            $stnk->approval = 'Approved';
+            $stnk->save();
+            $kir->approval = 'Approved';
+            $kir->save();
+        }
+
+        // Tampilkan pesan sukses atau lakukan tindakan sesuai kebutuhan
+        return redirect()->back()->with('success', 'Kendaraan berhasil diapprove');
+    }
+
+    public function reject(Request $request, $no_polisi)
+    {
+        // Cari kendaraan berdasarkan nomor polisi
+        $kendaraan = Kendaraan::where('no_polisi', $no_polisi)->first();
+
+        // Lakukan validasi apakah kendaraan ditemukan atau tidak
+        if (!$kendaraan) {
+            // Jika tidak ditemukan, lakukan tindakan sesuai kebutuhan (misalnya, tampilkan pesan error)
+            return redirect()->back()->with('error', 'Kendaraan tidak ditemukan');
+        }
+
+        // Ambil keterangan dari form input
+        $keterangan = $request->input('keterangan');
+
+        // Ubah status kendaraan menjadi "Reject"
+        $kendaraan->status = 'Reject';
+
+        // Simpan keterangan di kolom keterangan
+        $kendaraan->keterangan = $keterangan;
+
+        $kendaraan->save();
+
+        // Tampilkan pesan sukses atau lakukan tindakan sesuai kebutuhan
+        return redirect()->back()->with('success', 'Kendaraan berhasil direject');
     }
 
     /**

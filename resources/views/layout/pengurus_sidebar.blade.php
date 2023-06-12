@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
       <div class="sidebar-brand-icon rotate-n-15">
-        <i class="fas fa-laugh-wink"></i>
+        <i class="fas fa-car"></i>
       </div>
       <div class="sidebar-brand-text mx-3">ArthaRide</div>
     </a>
@@ -36,8 +36,8 @@
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Kelola Kendaraan</h6>
-          <a class="collapse-item" href="{{ url('/kendaraan') }}">Data Kendaraan</a>
-          <a class="collapse-item" href="#">Approval Tambah Kendaraan</a>
+          <a class="collapse-item" href="#">Data Kendaraan</a>
+          <a class="collapse-item" href="{{ url('/kendaraan') }}">Approval Tambah Kendaraan</a>
           <a class="collapse-item" href="#">Approval Jual Kendaraan</a>
         </div>
       </div>
