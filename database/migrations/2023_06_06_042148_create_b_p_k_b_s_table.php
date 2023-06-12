@@ -17,8 +17,8 @@ class CreateBPKBSTable extends Migration
             $table->bigIncrements('id');
             $table->string('no_polisi');
             $table->foreign('no_polisi')->references('no_polisi')->on('kendaraans')->onDelete('cascade');
-            $table->string('nama');
-            $table->string('posisi');
+            $table->string('nama_bpkb');
+            $table->string('posisi_bpkb');
             $table->string('approval');
             $table->timestamps();
         });

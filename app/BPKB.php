@@ -8,7 +8,7 @@ class BPKB extends Model
 {
     protected $table = 'b_p_k_b_s';
     protected $primaryKey = 'id';
-    protected $fillable = ['no_polisi', 'nama', 'posisi','approval'];
+    protected $fillable = ['no_polisi', 'nama_bpkb', 'posisi_bpkb','approval'];
 
     public function kendaraan()
     {

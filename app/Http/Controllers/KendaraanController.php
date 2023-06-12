@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Support\Facades\Auth;
+use App\User;
 use App\Kendaraan;
+use App\BPKB;
+use App\STNK;
+use App\KIR;
 use Illuminate\Http\Request;
 
 class KendaraanController extends Controller
@@ -14,8 +20,13 @@ class KendaraanController extends Controller
      */
     public function index()
     {
-        $kendaraans = Kendaraan::all();
-        return view('admin.kendaraan.index', compact('kendaraans'));
+        if (Auth::user()->role == 'Pengurus') {
+            $kendaraans = Kendaraan::all();
+            return view('pengurus.kendaraan.index', compact('kendaraans'));
+        } else {
+            $kendaraans = Kendaraan::all();
+            return view('admin.kendaraan.index', compact('kendaraans'));
+        }
     }
 
     /**
@@ -37,7 +48,10 @@ class KendaraanController extends Controller
     public function store(Request $request)
     {
         Kendaraan::create($request->all());
-        return redirect('kendaraans');
+        BPKB::create($request->all());
+        STNK::create($request->all());
+        KIR::create($request->all());
+        return redirect('kendaran');
     }
 
     /**
@@ -59,7 +73,7 @@ class KendaraanController extends Controller
      */
     public function edit($id)
     {
-        return view('kendaraan.edit', compact('kendaraans'));
+        //return view('kendaraan.edit', compact('kendaraans'));
     }
 
     /**
@@ -71,8 +85,8 @@ class KendaraanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $kendaraans->update($request->all());
-        return redirect('kendaraans');
+        //$kendaraans->update($request->all());
+        //return redirect('kendaraans');
     }
 
     /**
@@ -83,7 +97,7 @@ class KendaraanController extends Controller
      */
     public function destroy($id)
     {
-        $kendaraans->delete();
-        return redirect('kendaraans');
+        //$kendaraans->delete();
+        //return redirect('kendaraans');
     }
 }
