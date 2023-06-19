@@ -21,12 +21,24 @@ class KendaraanController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'Pengurus') {
-            $kendaraans = Kendaraan::where('approval', 'Proses Approval')->get();
+            $kendaraans = Kendaraan::where('approval', 'Approved')->get();
             return view('pengurus.kendaraan.index', compact('kendaraans'));
         } else {
             $kendaraans = Kendaraan::where('approval', 'Approved')->get();
             return view('admin.kendaraan.index', compact('kendaraans'));
         }
+    }
+
+    public function approval()
+    {
+        $kendaraans = Kendaraan::where('approval', 'Proses Approval')->get();
+        return view('pengurus.Kendaraan.approval', compact('kendaraans'));
+    }
+
+    public function revisi()
+    {
+        $kendaraans = Kendaraan::where('approval', 'Reject')->get();
+        return view('admin.kendaraan.revisi', compact('kendaraans'));
     }
 
     /**
@@ -51,6 +63,8 @@ class KendaraanController extends Controller
         BPKB::create($request->all());
         STNK::create($request->all());
         KIR::create($request->all());
+        // Tambahkan pesan berhasil ke session
+        session()->flash('success', 'Data berhasil di Tambahkan, Menunggu Approval dari Pengurus');
         return redirect('kendaraan');
     }
 
@@ -79,9 +93,14 @@ class KendaraanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kendaraan $kendaraan)
+    public function edit($no_polisi)
     {
-        return view('pengurus.kendaraan.detail', compact('kendaraan'));
+        $kendaraan = Kendaraan::where('no_polisi', $no_polisi)->first();
+        $bpkb = BPKB::find($kendaraan->no_polisi);
+        $bpkp = BPKB::where('no_polisi', $kendaraan->no_polisi)->first();
+        $stnk = STNK::where('no_polisi', $kendaraan->no_polisi)->first();
+        $kir = KIR::where('no_polisi', $kendaraan->no_polisi)->first();
+        return view('admin.kendaraan.edit', compact('kendaraan', 'bpkp', 'stnk', 'kir'));
     }
 
     /**
@@ -91,10 +110,72 @@ class KendaraanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $no_polisi)
     {
-        //$kendaraans->update($request->all());
-        //return redirect('kendaraans');
+        // // Validasi input jika diperlukan
+        // $validatedData = $request->validate([
+        //     'jenis' => 'required',
+        //     'no_polisi' => 'required',
+        //     'merk' => 'required',
+        //     // Daftar field lainnya untuk Kendaraan
+        //     'nama_bpkb' => 'required',
+        //     'posisi_bpkb' => 'required',
+        //     // Daftar field lainnya untuk BPKB
+        //     'tanggal_jt_stnk' => 'required|date',
+        //     'tanggal_bayar_stnk' => 'required|date',
+        //     'biaya_stnk' => 'required',
+        //     // Daftar field lainnya untuk STNK
+        //     'tanggal_jt_kir' => 'required|date',
+        //     'tanggal_bayar_kir' => 'required|date',
+        //     'biaya_kir' => 'required',
+        //     // Daftar field lainnya untuk KIR
+        // ]);
+
+        // Update data kendaraan
+        $kendaraan = Kendaraan::where('no_polisi', $no_polisi)->first();
+        $kendaraan->no_polisi = $request->no_polisi;
+        $kendaraan->jenis = $request->jenis;
+        $kendaraan->merk = $request->merk;
+        $kendaraan->approval = 'Proses Approval';
+        // Update field lainnya untuk Kendaraan
+
+        // Simpan perubahan pada model Kendaraan
+        $kendaraan->save();
+
+        // Update data BPKB
+        $bpkb = BPKB::where('no_polisi', $kendaraan->no_polisi)->first();
+        $bpkb->nama_bpkb = $request->nama_bpkb;
+        $bpkb->posisi_bpkb = $request->posisi_bpkb;
+        $bpkb->approval = 'Proses Approval';
+        // Update field lainnya untuk BPKB
+        $bpkb->save();
+
+        // Update data STNK
+        $stnk = STNK::where('no_polisi', $kendaraan->no_polisi)->first();
+        $stnk->tanggal_jt_stnk = $request->tanggal_jt_stnk;
+        $stnk->tanggal_bayar_stnk = $request->tanggal_bayar_stnk;
+        $stnk->biaya_stnk = $request->biaya_stnk;
+        $stnk->approval = 'Proses Approval';
+        // Update field lainnya untuk STNK
+        $stnk->save();
+
+        // Update data KIR
+        $kir = KIR::where('no_polisi', $kendaraan->no_polisi)->first();
+        $kir->tanggal_jt_kir = $request->tanggal_jt_kir;
+        $kir->tanggal_bayar_kir = $request->tanggal_bayar_kir;
+        $kir->biaya_kir = $request->biaya_kir;
+        $kir->approval = 'Proses Approval';
+        // Update field lainnya untuk KIR
+        $kir->save();
+
+        // Lakukan validasi apakah kendaraan ditemukan atau tidak
+        if (!$kendaraan) {
+            // Jika tidak ditemukan, lakukan tindakan sesuai kebutuhan (misalnya, tampilkan pesan error)
+            return redirect()->back()->with('error', 'Kendaraan tidak ditemukan');
+        }
+
+        // Redirect atau tampilkan pesan berhasil
+        return redirect()->route('kendaraan.revisi', $kendaraan->no_polisi)->with('success', 'Data kendaraan berhasil diperbarui.');
     }
 
     public function approved(Request $request, $no_polisi)
@@ -131,6 +212,8 @@ class KendaraanController extends Controller
             $kir->save();
         }
 
+        // Tambahkan pesan berhasil ke session
+        session()->flash('approved', 'Kendaraan berhasil di Approve, Tambah kendaraan Berhasil di Setujui');
         // Tampilkan pesan sukses atau lakukan tindakan sesuai kebutuhan
         return redirect()->back()->with('success', 'Kendaraan berhasil diapprove');
     }
@@ -139,24 +222,39 @@ class KendaraanController extends Controller
     {
         // Cari kendaraan berdasarkan nomor polisi
         $kendaraan = Kendaraan::where('no_polisi', $no_polisi)->first();
+        $kir = KIR::where('no_polisi', $no_polisi)->first();
+        $bpkb = BPKB::where('no_polisi', $no_polisi)->first();
+        $stnk = STNK::where('no_polisi', $no_polisi)->first();
 
         // Lakukan validasi apakah kendaraan ditemukan atau tidak
         if (!$kendaraan) {
             // Jika tidak ditemukan, lakukan tindakan sesuai kebutuhan (misalnya, tampilkan pesan error)
             return redirect()->back()->with('error', 'Kendaraan tidak ditemukan');
         }
+        
+        if (!$kir) {
+            // Ubah status kendaraan menjadi "Sudah Approve"
+            $kendaraan->approval = 'Reject';
+            $kendaraan->save();
+            $bpkb->approval = 'Reject';
+            $bpkb->save();
+            $stnk->approval = 'Reject';
+            $stnk->save();
+        } else {
+            // Ubah status kendaraan menjadi "Sudah Approve"
+            $kendaraan->approval = 'Reject';
+            $kendaraan->save();
+            $bpkb->approval = 'Reject';
+            $bpkb->save();
+            $stnk->approval = 'Reject';
+            $stnk->save();
+            $kir->approval = 'Reject';
+            $kir->save();
+        }
+        $kendaraan->update($request->all());
 
-        // Ambil keterangan dari form input
-        $keterangan = $request->input('keterangan');
-
-        // Ubah status kendaraan menjadi "Reject"
-        $kendaraan->status = 'Reject';
-
-        // Simpan keterangan di kolom keterangan
-        $kendaraan->keterangan = $keterangan;
-
-        $kendaraan->save();
-
+        // Tambahkan pesan berhasil ke session
+        session()->flash('reject', 'Data berhasil di Reject, Menunggu Revisi dari Admin');
         // Tampilkan pesan sukses atau lakukan tindakan sesuai kebutuhan
         return redirect()->back()->with('success', 'Kendaraan berhasil direject');
     }

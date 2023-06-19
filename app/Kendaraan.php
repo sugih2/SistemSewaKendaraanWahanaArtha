@@ -1,7 +1,9 @@
 <?php
 
 namespace App;
-
+use App\Models\BPKB;
+use App\Models\KIR;
+use App\Models\STNK;
 use Illuminate\Database\Eloquent\Model;
 
 class Kendaraan extends Model
@@ -11,4 +13,20 @@ class Kendaraan extends Model
     protected $fillable = ['no_polisi', 'merk', 'tipe', 'jenis', 'kondisi', 'no_rangka', 'no_mesin', 
                         'tahun_rakitan', 'warna', 'tanggal_beli', 'harga_off', 'bbn', 'karoseri', 'total', 
                         'tahun', 'rate', 'harga_sewa', 'lokasi', 'status', 'approval', 'keterangan'];
+
+    public function bpkb()
+    {
+        return $this->hasOne('App\BPKB', 'no_polisi', 'no_polisi');
+    }
+
+    public function kir()
+    {
+        return $this->hasOne('App\KIR', 'no_polisi', 'no_polisi');
+    }
+
+    public function stnk()
+    {
+        return $this->hasOne('App\STNK', 'no_polisi', 'no_polisi');
+    }
+    
 }

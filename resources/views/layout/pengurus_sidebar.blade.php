@@ -36,8 +36,8 @@
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Kelola Kendaraan</h6>
-          <a class="collapse-item" href="#">Data Kendaraan</a>
-          <a class="collapse-item" href="{{ url('/kendaraan') }}">Approval Tambah Kendaraan</a>
+          <a class="collapse-item" href="{{ url('/kendaraan') }}">Data Kendaraan</a>
+          <a class="collapse-item" href="{{ url('/kendaraan/approval') }}">Approval Tambah Kendaraan</a>
           <a class="collapse-item" href="#">Approval Jual Kendaraan</a>
         </div>
       </div>
