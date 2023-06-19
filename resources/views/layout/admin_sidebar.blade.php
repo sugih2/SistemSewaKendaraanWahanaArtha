@@ -39,6 +39,7 @@
           <a class="collapse-item" href="{{ url('/kendaraan') }}">Data Kendaraan</a>
           <a class="collapse-item" href="{{ route('kendaraan.create') }}">Tambah Kendaraan</a>
           <a class="collapse-item" href="#">Jual Kendaraan</a>
+          <a class="collapse-item" href="{{ url('/kendaraan/revisi') }}">Revisi Data Kendaraan</a>
         </div>
       </div>
     </li>
@@ -52,9 +53,9 @@
       <div id="collapseSurat" class="collapse" aria-labelledby="headingSurat" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Kelola Surat Kendaraan</h6>
-          <a class="collapse-item" href="bpkb">Kelola Data BPKB</a>
-          <a class="collapse-item" href="stnk">Kelola Data STNK</a>
-          <a class="collapse-item" href="kir">Kelola Data KIR</a>
+          <a class="collapse-item" href="{{ url('/bpkb') }}">Kelola Data BPKB</a>
+          <a class="collapse-item" href="{{ url('/stnk') }}">Kelola Data STNK</a>
+          <a class="collapse-item" href="{{ url('/kir') }}">>Kelola Data KIR</a>
         </div>
       </div>
     </li>
