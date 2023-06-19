@@ -20,10 +20,13 @@ Auth::routes();
 // Route::get('/', 'HomeController@dashboard');
 Route::get('/home', 'HomeController@dashboard')->name('home');
 
-Route::resource('/kendaraan', 'KendaraanController');
+Route::get('/bpkb/{id}/edit', 'BpkbController@edit')->name('bpkb.edit');
 Route::put('/kendaraan/{id}/approved', 'KendaraanController@approved')->name('kendaraan.approved');
 Route::put('/kendaraan/{id}/reject', 'KendaraanController@reject')->name('kendaraan.reject');
-Route::resource('/service', 'ServiceController');
-Route::resource('/bpkb', 'BpkbController');
+Route::put('/bpkb/{id}', 'BpkbController@update')->name('bpkb.update');
+
+Route::resource('/kendaraan', 'KendaraanController');
 Route::resource('/stnk', 'StnkController');
 Route::resource('/kir', 'KirController');
+Route::resource('/service', 'ServiceController');
+Route::resource('/bpkb', 'BpkbController');

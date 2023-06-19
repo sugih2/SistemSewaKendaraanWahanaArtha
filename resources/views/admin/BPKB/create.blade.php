@@ -40,17 +40,18 @@
         </div><br />
     @endif
 
-    <form method="post" action="{{ route('bpkb.store') }}" class="container-fluid">
+    <form method="post" action="{{ route('bpkb.edit', $bpkb->id) }}" class="container-fluid">
         @csrf
+        @method('PUT')
         <h4 class="h4 mb-10 text-gray-800">1. Data Kendaraan</h4>
         <div class="form-group row">
           <div class="col-sm-6  mb-3 mb-sm-0">
-            <label for="">Jenis Kendaraan</label>
-            <input type="text" class="form-control" name="">
+            <label for="">Nama Pemegang</label>
+            <input type="text" class="form-control" name="nama_bpkb" value="{{ $bpkb->nama_bpkb }}">
           </div>
           <div class="col-sm-6">
-            <label for="">No Polisi</label>
-            <input type="text" class="form-control" name="">
+            <label for="">Posisi BPKB</label>
+            <input type="text" class="form-control" name="posisi_bpkb" value="{{ $bpkb->posisi_bpkb }}">
           </div>
         </div>
         <div class="form-group row col-sm-6  mb-3 mb-sm-0">

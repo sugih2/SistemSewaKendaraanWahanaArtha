@@ -50,7 +50,7 @@ class BpkbController extends Controller
         BPKB::create($request->all());
         
         
-        return redirect('bpkb');
+        return redirect('bpkbs');
     }
 
     /**
@@ -72,6 +72,7 @@ class BpkbController extends Controller
      */
     public function edit($id)
     {
+        $bpkbs = Bpkb::find($id);
         return view('bpkb.edit', compact('bpkbs'));
     }
 
@@ -84,8 +85,16 @@ class BpkbController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $bpkbs->update($request->all());
-        return redirect('bpkbs');
+        $request->validate([
+            'namapb' => 'required',
+            'posisi' => 'required'
+    ]);
+
+        $bpkbs = Bpkb::find($id);
+        $bpkbs->namapb = $request->get('namapb');
+        $bpkbs->posisi = $request->get('posisi');
+        $bpkbs->save();
+        return redirect()->route('bpkb.index')->with('success', 'Data updated successfully.');
     }
 
     /**
