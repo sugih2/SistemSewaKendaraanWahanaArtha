@@ -25,6 +25,11 @@ Route::get('/pengajuanpembelian/approved/{id}', 'PengajuanPembelianController@ap
 Route::put('/pengajuanpembelian/{id}/reject', 'PengajuanPembelianController@reject')->name('pengajuanpembelian.reject');
 Route::resource('/pengajuanpembelian', 'PengajuanPembelianController');
 
+Route::get('/transaksipembelian/approval', 'TransaksiPembelianController@approval')->name('transaksipembelian.approval');
+Route::get('/transaksipembelian/approved/{id}', 'TransaksiPembelianController@approved')->name('transaksipembelian.approved');
+Route::put('/transaksipembelian/{id}/reject', 'TransaksiPembelianController@reject')->name('transaksipembelian.reject');
+Route::resource('/transaksipembelian', 'TransaksiPembelianController');
+
 Route::get('/kendaraan/revisi', 'KendaraanController@revisi')->name('kendaraan.revisi');
 Route::get('/kendaraan/approval', 'KendaraanController@approval')->name('kendaraan.approval');
 Route::get('/kendaraan/{no_polisi}/edit', 'KendaraanController@edit')->name('kendaraan.edit');
