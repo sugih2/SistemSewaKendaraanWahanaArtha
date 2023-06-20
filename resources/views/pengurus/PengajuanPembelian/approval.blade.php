@@ -42,7 +42,7 @@
 
           <!-- PTipe Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Approval Tambah pengajuan_pembelian</h1>
+            <h1 class="h3 mb-0 text-gray-800">Approval Tambah Pengajuan Pembelian</h1>
           </div>
 
           <!-- Content Row -->
@@ -182,34 +182,15 @@
                                   <div class="modal-dialog" role="document">
                                       <div class="modal-content">
                                           <div class="modal-header">
-                                              <h5 class="modal-title" id="approveModalLabel">Approve pengajuan_pembelian</h5>
+                                              <h5 class="modal-title" id="approveModalLabel">Approve Pengajuan Pembelian</h5>
                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                   <span aria-hidden="true">&times;</span>
                                               </button>
                                           </div>
-                                          <form action="pengajuanpembelian.approved" method="POST">
+                                          <form action="{{route('pengajuanpembelian.approved', $pengajuan_pembelian->id)}}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">
-                                              <div class="row">
-                                                  <div class="col-md-6">
-                                                  <!-- Kolom pertama -->
-                                                  <p>No Polisi: {{ $pengajuan_pembelian->id }}</p>
-                                                  <p>Merk: {{ $pengajuan_pembelian->merk }}</p>
-                                                  <p>Tipe: {{ $pengajuan_pembelian->tipe }}</p>
-                                                  <p>Warna: {{ $pengajuan_pembelian->warna }}</p>
-                                                  <p>Tanggal Beli: {{ $pengajuan_pembelian->tanggal_beli }}</p>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <!-- Kolom kedua -->
-                                                  <p>Harga Off: {{ $pengajuan_pembelian->harga }}</p>
-                                                  <p>BBN: {{ $pengajuan_pembelian->bbn }}</p>
-                                                  <p>OTR: {{ $pengajuan_pembelian->otr }}</p>
-                                                  <p>Karoseri: {{ $pengajuan_pembelian->karoseri }}</p>
-                                                  <p>Total Pembelian: {{ $pengajuan_pembelian->total }}</p>
-                                                  <p>Tahun: {{ $pengajuan_pembelian->tahun }}</p>
-                                                  <!-- Tambahkan informasi detail lainnya sesuai kebutuhan -->
-                                              </div>
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" name="approval" value="Approved" hidden>
                                                 </div>
@@ -235,7 +216,7 @@
                                                   <span aria-hidden="true">&times;</span>
                                               </button>
                                           </div>
-                                          <form action="" method="POST">
+                                          <form action="{{route('pengajuanpembelian.reject', $pengajuan_pembelian->id)}}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">

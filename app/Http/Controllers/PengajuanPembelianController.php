@@ -26,7 +26,8 @@ class PengajuanPembelianController extends Controller
 
     public function revisi()
     {
-        //
+        $pengajuan_pembelians = PengajuanPembelian::where('approval', 'Reject')->get();
+        return view('admin.PengajuanPembelian.revisi', compact('pengajuan_pembelians'));
     }
 
     /**
@@ -73,7 +74,9 @@ class PengajuanPembelianController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pengajuan_pembelian = PengajuanPembelian::where('id', $id)->first();
+
+        return view('admin.PengajuanPembelian.edit', compact('pengajuan_pembelian'));
     }
 
     /**
@@ -85,7 +88,13 @@ class PengajuanPembelianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pengajuan_pembelian = PengajuanPembelian::where('id', $id)->first();
+        $pengajuan_pembelian->fill($request->all());
+        $pengajuan_pembelian->approval = 'Proses Approval';
+        $pengajuan_pembelian->save();
+
+        // Redirect atau tampilkan pesan berhasil
+        return redirect()->route('pengajuanpembelian.revisi', $pengajuan_pembelian->id)->with('success', 'Data pengajuan pembelian berhasil direvisi.');
     }
 
     public function approved(Request $request, $id)
@@ -105,7 +114,17 @@ class PengajuanPembelianController extends Controller
 
     public function reject(Request $request, $id)
     {
-        //
+        // Cari kendaraan berdasarkan nomor polisi
+        $pengajuan_pembelian = PengajuanPembelian::where('id', $id)->first();
+
+        $pengajuan_pembelian->approval = 'Reject';
+        $pengajuan_pembelian->save();
+        $pengajuan_pembelian->update($request->all());
+
+        // Tambahkan pesan berhasil ke session
+        session()->flash('reject', 'Pengajuan Pembelian Kendaraan berhasil di Reject');
+        // Tampilkan pesan sukses atau lakukan tindakan sesuai kebutuhan
+        return redirect()->back()->with('success', 'Pengajuan Pembelian Kendaraan direject');
     }
 
 
