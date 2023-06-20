@@ -20,17 +20,27 @@ Auth::routes();
 // Route::get('/', 'HomeController@dashboard');
 Route::get('/home', 'HomeController@dashboard')->name('home');
 
-Route::get('/pengajuanpembelian/approval', 'PengajuanPembelianController@approval')->name('pengajuanpembelian.approval');
-Route::get('/pengajuanpembelian/approved/{id}', 'PengajuanPembelianController@approved')->name('pengajuanpembelian.approved');
-Route::put('/pengajuanpembelian/{id}/reject', 'PengajuanPembelianController@reject')->name('pengajuanpembelian.reject');
-Route::resource('/pengajuanpembelian', 'PengajuanPembelianController');
+// Route Pengajuan Pembelian
+Route::prefix('pengajuanpembelian')->group(function () {
+    Route::get('/approval', 'PengajuanPembelianController@approval')->name('pengajuanpembelian.approval');
+    Route::put('/approved/{id}', 'PengajuanPembelianController@approved')->name('pengajuanpembelian.approved');
+    Route::put('/reject/{id}', 'PengajuanPembelianController@reject')->name('pengajuanpembelian.reject');
+    Route::get('/revisi', 'PengajuanPembelianController@revisi')->name('pengajuanpembelian.revisi');
+    Route::get('/{id}/edit', 'PengajuanPembelianController@edit')->name('pengajuanpembelian.edit');
+    Route::put('/{id}', 'PengajuanPembelianController@update')->name('pengajuanpembelian.update');
+});
 
-Route::get('/kendaraan/revisi', 'KendaraanController@revisi')->name('kendaraan.revisi');
-Route::get('/kendaraan/approval', 'KendaraanController@approval')->name('kendaraan.approval');
-Route::get('/kendaraan/{no_polisi}/edit', 'KendaraanController@edit')->name('kendaraan.edit');
-Route::get('/kendaraan/approved/{no_polisi}', 'KendaraanController@approved')->name('kendaraan.approved');
-Route::put('/kendaraan/{id}/reject', 'KendaraanController@reject')->name('kendaraan.reject');
-Route::put('/kendaraan/{id}', 'KendaraanController@update')->name('kendaraan.update');
+// Route Kendaraan
+Route::prefix('kendaraan')->group(function () {
+    Route::get('/revisi', 'KendaraanController@revisi')->name('kendaraan.revisi');
+    Route::get('/approval', 'KendaraanController@approval')->name('kendaraan.approval');
+    Route::get('/{no_polisi}/edit', 'KendaraanController@edit')->name('kendaraan.edit');
+    Route::get('/approved/{no_polisi}', 'KendaraanController@approved')->name('kendaraan.approved');
+    Route::put('/{id}/reject', 'KendaraanController@reject')->name('kendaraan.reject');
+    Route::put('/{id}', 'KendaraanController@update')->name('kendaraan.update');
+    
+});
+Route::resource('/pengajuanpembelian', 'PengajuanPembelianController');
 Route::resource('/kendaraan', 'KendaraanController');
 Route::resource('/service', 'ServiceController');
 Route::resource('/bpkb', 'BpkbController');
