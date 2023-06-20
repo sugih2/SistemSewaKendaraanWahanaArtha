@@ -30,6 +30,7 @@ Route::prefix('pengajuanpembelian')->group(function () {
     Route::put('/{id}', 'PengajuanPembelianController@update')->name('pengajuanpembelian.update');
 });
 
+
 // Route Kendaraan
 Route::prefix('kendaraan')->group(function () {
     Route::get('/revisi', 'KendaraanController@revisi')->name('kendaraan.revisi');
@@ -41,6 +42,13 @@ Route::prefix('kendaraan')->group(function () {
     
 });
 Route::resource('/pengajuanpembelian', 'PengajuanPembelianController');
+
+Route::get('/transaksipembelian/approval', 'TransaksiPembelianController@approval')->name('transaksipembelian.approval');
+Route::get('/transaksipembelian/approved/{id}', 'TransaksiPembelianController@approved')->name('transaksipembelian.approved');
+Route::put('/transaksipembelian/{id}/reject', 'TransaksiPembelianController@reject')->name('transaksipembelian.reject');
+Route::resource('/transaksipembelian', 'TransaksiPembelianController');
+
+
 Route::resource('/kendaraan', 'KendaraanController');
 Route::resource('/service', 'ServiceController');
 Route::resource('/bpkb', 'BpkbController');
