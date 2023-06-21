@@ -27,6 +27,22 @@
       Kelola Kendaraan
     </div>
     
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <i class="fas fa-sw fa-taxi"></i>
+        <span>Pembelian Kendaraan</span>
+      </a>
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Kelola Pembelian</h6>
+          <a class="collapse-item" href="{{ url('/pengajuanpembelian/create') }}">Pengajuan Pembelian</a>
+          <a class="collapse-item" href="{{ url('/pengajuanpembelian/') }}">Data Pengajuan Pembelian</a>
+          <a class="collapse-item" href="{{ url('#') }}">Transaksi Pembelian</a>
+        </div>
+      </div>
+    </li>
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKendaraan" aria-expanded="true" aria-controls="collapseKendaraan">

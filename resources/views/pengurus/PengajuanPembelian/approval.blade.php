@@ -138,46 +138,77 @@
                                       </button>
                                     </td>
                                 </tr>
+                                
+                            @endforeach
+                          </tbody>
+                      </table>
                                 <!-- Modal Detail pengajuan_pembelian -->
+                            @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
                                 <div class="modal fade" id="detailModal{{ $pengajuan_pembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
+                                  <div class="modal-dialog modal-lg" role="document">
                                       <div class="modal-content">
                                           <div class="modal-header">
-                                              <h5 class="modal-title" id="detailModalLabel">Detail pengajuan_pembelian</h5>
+                                              <h5 class="modal-title" id="detailModalLabel">Detail Pengajuan Pembelian</h5>
                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                   <span aria-hidden="true">&times;</span>
                                               </button>
                                           </div>
                                           <div class="modal-body">
                                             <div class="row">
-                                              <div class="col-md-6">
+                                              <table class="table">
+                                                <tbody>
                                                   <!-- Kolom pertama -->
-                                                  <p>No Polisi: {{ $pengajuan_pembelian->id }}</p>
-                                                  <p>Merk: {{ $pengajuan_pembelian->merk }}</p>
-                                                  <p>Tipe: {{ $pengajuan_pembelian->tipe }}</p>
-                                                  <p>Warna: {{ $pengajuan_pembelian->warna }}</p>
-                                                  <p>Tanggal Beli: {{ $pengajuan_pembelian->tanggal_beli }}</p>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <!-- Kolom kedua -->
-                                                  <p>Harga Off: {{ $pengajuan_pembelian->harga }}</p>
-                                                  <p>BBN: {{ $pengajuan_pembelian->bbn }}</p>
-                                                  <p>OTR: {{ $pengajuan_pembelian->otr }}</p>
-                                                  <p>Karoseri: {{ $pengajuan_pembelian->karoseri }}</p>
-                                                  <p>Total Pembelian: {{ $pengajuan_pembelian->total }}</p>
-                                                  <p>Tahun: {{ $pengajuan_pembelian->tahun }}</p>
-                                                  <!-- Tambahkan informasi detail lainnya sesuai kebutuhan -->
-                                              </div>
+
+                                                  <tr>
+                                                    <td colspan ="4"><h5><b>Data Pengajuan Pembelian</b></h5></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><b>No Polisi</b></td>
+                                                    <td><b>{{ $pengajuan_pembelian->id }}</b></td>
+                                                    <td><b>Merk:</b></td> 
+                                                    <td><b>{{ $pengajuan_pembelian->merk }}</b></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><b>Tipe:</b></td>
+                                                    <td><b>{{ $pengajuan_pembelian->tipe }}</b></td>
+                                                    <td><b>Warna:</b></td> 
+                                                    <td><b>{{ $pengajuan_pembelian->warna }}</b></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><b>Tanggal Beli:</b></td>
+                                                    <td><b>{{ $pengajuan_pembelian->tanggal_beli }}</b></td>
+                                                  </tr>
+                                                    <td colspan="4"><h5><b>Data Pembelian</b></h5></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><b>Harga Off:</b></td>
+                                                    <td><b>Rp.{{ $pengajuan_pembelian->harga }}</b></td>
+                                                    <td><b>BBN:</b></td> 
+                                                    <td><b>Rp.{{ $pengajuan_pembelian->bbn }}</b></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><b>OTR:</b></td>
+                                                    <td><b>Rp.{{ $pengajuan_pembelian->otr }}</b></td>
+                                                    <td><b>Karoseri:</b></td> 
+                                                    <td><b>Rp.{{ $pengajuan_pembelian->karoseri }}</b></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><b>Total Pembelian:</b></td>
+                                                    <td><b>Rp.{{ $pengajuan_pembelian->total }}</b></td>
+                                                    <td><b>Tahun:</b></td> 
+                                                    <td><b>{{ $pengajuan_pembelian->tahun }}</b></td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
                                           </div>
-                                          </div>
-                                          <div class="modal-footer">
-                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                           </div>
                                       </div>
                                   </div>
                               </div>
-
+                           @endforeach 
                                 <!-- Modal Approve pengajuan_pembelian -->
+                                @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
                                 <div class="modal fade" id="approveModal{{ $pengajuan_pembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="approveModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                       <div class="modal-content">
@@ -201,69 +232,106 @@
                                                 </span> Setuju</button>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             </div>
-                                        </form>
-                                      </div>
+                                          </form>
+                                     </div>
                                   </div>
-                              </div>
+                                 </div>
+                              @endforeach
 
                                 <!-- Modal Reject pengajuan_pembelian -->
+                                @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
                                 <div class="modal fade" id="rejectModal{{ $pengajuan_pembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="rejectModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
+                                  <div class="modal-dialog modal-lg" role="document">
                                       <div class="modal-content">
                                           <div class="modal-header">
-                                              <h5 class="modal-title" id="rejectModalLabel">Reject pengajuan_pembelian</h5>
+                                              <h5 class="modal-title" id="rejectModalLabel">Reject Pengajuan Pembelian</h5>
                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                   <span aria-hidden="true">&times;</span>
                                               </button>
                                           </div>
+                                          <table class="table">
                                           <form action="{{route('pengajuanpembelian.reject', $pengajuan_pembelian->id)}}" method="POST">
+                                          
+                                          <tbody> 
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">
                                               <div class="row">
-                                                <div class="col-md-6">
                                                     <!-- Kolom pertama -->
-                                                    <p>No Polisi: {{ $pengajuan_pembelian->id }}</p>
-                                                    <p>Merk: {{ $pengajuan_pembelian->merk }}</p>
-                                                    <p>Tipe: {{ $pengajuan_pembelian->tipe }}</p>
-                                                    <p>Warna: {{ $pengajuan_pembelian->warna }}</p>
-                                                    <p>Tanggal Beli: {{ $pengajuan_pembelian->tanggal_beli }}</p>
-                                                </div>
-                                                <div class="col-md-6">
+                                                    <tr>
+                                                      <td><b>No Polisi:</b></td>
+                                                      <td><b>{{ $pengajuan_pembelian->id }}</b></td>
+                                                      <td><b>Merk:</b></td> 
+                                                      <td><b>{{ $pengajuan_pembelian->merk }}</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td><b>Tipe:</b></td>
+                                                      <td><b>{{ $pengajuan_pembelian->tipe }}</b></td>
+                                                      <td><b>Warna:</b></td> 
+                                                      <td><b>{{ $pengajuan_pembelian->warna }}</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td><b>Tanggal Beli: {{ $pengajuan_pembelian->tanggal_beli }}</b></td>
+                                                    </tr>
+
                                                     <!-- Kolom kedua -->
-                                                    <p>Harga Off: {{ $pengajuan_pembelian->harga }}</p>
-                                                    <p>BBN: {{ $pengajuan_pembelian->bbn }}</p>
-                                                    <p>OTR: {{ $pengajuan_pembelian->otr }}</p>
-                                                    <p>Karoseri: {{ $pengajuan_pembelian->karoseri }}</p>
-                                                    <p>Total Pembelian: {{ $pengajuan_pembelian->total }}</p>
-                                                    <p>Tahun: {{ $pengajuan_pembelian->tahun }}</p>
+                                                    <tr>
+                                                      <td colspan ="4"><h5><b>Data Kendaraan</b></h5></td>
+                                                    <tr>
+                                                      <td><b>Harga Off:</b></td>
+                                                      <td><b>Rp.{{ $pengajuan_pembelian->harga }}</b></td>
+                                                      <td><b>BBN:</b></td>
+                                                      <td><b>Rp.{{ $pengajuan_pembelian->bbn }}</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td><b>OTR:</b></td>
+                                                      <td><b>Rp.{{ $pengajuan_pembelian->otr }}</b></td>
+                                                      <td><b>Karoseri:</b></td>
+                                                      <td><b>Rp.{{ $pengajuan_pembelian->karoseri }}</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td><b>Total Pembelian:</b></td>
+                                                      <td><b>Rp.{{ $pengajuan_pembelian->total }}</b></td>
+                                                      <td><b>Tahun:</b></td>
+                                                      <td><b>{{ $pengajuan_pembelian->tahun }}</b></td>
+                                                    </tr>
+                                                  
                                                     <!-- Tambahkan informasi detail lainnya sesuai kebutuhan -->
                                                 </div>
                                               </div>
                                             <div class="row">
                                               <div class="form-group">
+                                                <tr>
+                                                  <td>
                                                 <label for="keterangan">Keterangan:</label>
                                                 <input type="text" class="form-control" name="keterangan" id="keterangan">
                                                 <input type="text" class="form-control" name="approval" value="Reject" hidden>
+                                                  </td>
+                                                </tr>
                                               </div>
                                             </div>
                                             </div>
                                             <div class="modal-footer">
+                                               <td> 
                                                 <button type="submit" class="btn btn-danger"><span class="icon text-white-50">
                                                 <i class="fas fa-check"></i>
                                                 </span> Reject</button>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                              </td>
                                             </div>
+                                          </tbody>
+                                          
                                         </form>
+                                        </table>
                                       </div>
                                   </div>
                               </div>
                 
                               
-                            
-                            @endforeach
+                           @endforeach 
+                          
                           </tbody>
-                      </table>
+                          
                   </div>
               </div>
           </div>
