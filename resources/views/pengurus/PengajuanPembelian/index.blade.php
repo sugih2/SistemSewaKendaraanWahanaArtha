@@ -100,7 +100,7 @@
                             @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $pengajuan_pembelian->id }}</td>
+                                    <td>{{ $pengajuan_pembelian->id_pengajuanpembelian }}</td>
                                     <td>{{ $pengajuan_pembelian->id_sppk }}</td>
                                     <td>{{ $pengajuan_pembelian->dealer }}</td>
                                     <td>{{ $pengajuan_pembelian->merk }}</td>

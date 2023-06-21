@@ -84,7 +84,7 @@
                             @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $pengajuan_pembelian->id }}</td>
+                                    <td>{{ $pengajuan_pembelian->id_pengajuanpembelian }}</td>
                                     <td>{{ $pengajuan_pembelian->id_sppk }}</td>
                                     <td>{{ $pengajuan_pembelian->dealer }}</td>
                                     <td>{{ $pengajuan_pembelian->merk }}</td>
@@ -100,7 +100,7 @@
                                     <td>{{ $pengajuan_pembelian->approval }}</td>
                                     <td>{{ $pengajuan_pembelian->keterangan }}</td>
                                     <td>
-                                      <a href="{{route('pengajuanpembelian.edit', $pengajuan_pembelian->id)}}" class="btn btn-primary btn-icon-split btn-sm">
+                                      <a href="{{route('pengajuanpembelian.edit', $pengajuan_pembelian->id_pengajuanpembelian)}}" class="btn btn-primary btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-edit"></i>
                                         </span>
@@ -108,7 +108,7 @@
                                       </a>
                                     </td>
                                     <td>
-                                      <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal{{ $pengajuan_pembelian->id }}">
+                                      <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal{{ $pengajuan_pembelian->id_pengajuanpembelian }}">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-info-circle"></i>
                                         </span>
@@ -122,7 +122,7 @@
                       </table>
                       <!-- Modal Detail pengajuan_pembelian -->
                     @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
-                    <div class="modal fade" id="detailModal{{ $pengajuan_pembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="detailModal{{ $pengajuan_pembelian->_pengajuanpembelian }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -140,7 +140,7 @@
                                   </tr>
                                   <tr>
                                     <td><b>No Polisi</b></td>
-                                    <td><b>{{ $pengajuan_pembelian->id }}</b></td>
+                                    <td><b>{{ $pengajuan_pembelian->id_pengajuanpembelian }}</b></td>
                                     <td><b>Merk</b></td>
                                     <td>{{ $pengajuan_pembelian->merk }}</td>
                                   </tr>

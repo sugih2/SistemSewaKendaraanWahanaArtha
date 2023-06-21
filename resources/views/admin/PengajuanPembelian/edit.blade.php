@@ -40,7 +40,7 @@
         </div><br />
     @endif
 
-    <form method="post" action="{{ route('pengajuanpembelian.update', $pengajuan_pembelian->id) }}" class="container-fluid">
+    <form method="post" action="{{ route('pengajuanpembelian.update', $pengajuan_pembelian->id_pengajuanpembelian) }}" class="container-fluid">
         @csrf
         @method('PUT')
         <b>

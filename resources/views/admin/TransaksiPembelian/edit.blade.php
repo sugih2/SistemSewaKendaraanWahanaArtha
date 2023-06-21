@@ -40,32 +40,33 @@
         </div><br />
     @endif
 
-    <form method="post" action="{{ route('transaksipembelian.store') }}" class="container-fluid">
+    <form method="post" action="{{ route('transaksipembelian.update', $transaksi_pembelian->id_transaksipembelian) }}" class="container-fluid">
         @csrf
+        @method('PUT')
         <b>
         <h4 class="h4 mb-10 text-gray-800">1. Direksi</h4>
         <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label for="">Data SPPK</label>
-              <input type="text" class="form-control" name="id_sppk" value="{{$pengajuan_pembelian->id_sppk}}" readonly>
+              <input type="text" class="form-control" name="id_sppk" value="{{$transaksi_pembelian->id_sppk}}" readonly>
             </div>
             <div class="col-sm-4">
               <label for="">Data Surat Pengajuan</label>
-              <input type="text" class="form-control" name="id_pengajuanpembelian" value="{{$pengajuan_pembelian->id_pengajuanpembelian}}" readonly>
+              <input type="text" class="form-control" name="id_pengajuanpembelian" value="{{$transaksi_pembelian->id_pengajuanpembelian}}" readonly>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label for="">Tanggal Transaksi Pembelian</label>
-              <input type="date" class="form-control @error('tanggal_transaksi_p') is-invalid @enderror" name="tanggal_transaksi_p" value="{{ old('tanggal_transaksi_p') }}" required autocomplete="tanggal_transaksi_p" autofocus>
+              <input type="date" class="form-control @error('tanggal_transaksi_p') is-invalid @enderror" name="tanggal_transaksi_p" value="{{$transaksi_pembelian->tanggal_transaksi_p}}" required autocomplete="tanggal_transaksi_p" autofocus>
             </div>
             <div class="col-sm-4">
               <label for="">Biaya Transaksi Pembelian</label>
-              <input type="text" class="form-control @error('pembayaran_transaksi_p') is-invalid @enderror" name="pembayaran_transaksi_p" value="{{ old('pembayaran_transaksi_p') }}" required autocomplete="pembayaran_transaksi_p" autofocus>
+              <input type="text" class="form-control @error('pembayaran_transaksi_p') is-invalid @enderror" name="pembayaran_transaksi_p" value="{{ $transaksi_pembelian->pembayaran_transaksi_p }}" required autocomplete="pembayaran_transaksi_p" autofocus>
             </div>
             <div class="col-sm-4">
               <label for="">Bukti Transaksi</label>
-              <input type="text" class="form-control @error('bukti_transaksi_p') is-invalid @enderror" name="bukti_transaksi_p" value="{{ old('bukti_transaksi_p') }}" required autocomplete="bukti_transaksi_p" autofocus>
+              <input type="text" class="form-control @error('bukti_transaksi_p') is-invalid @enderror" name="bukti_transaksi_p" value="{{ $transaksi_pembelian->bukti_transaksi_p }}" required autocomplete="bukti_transaksi_p" autofocus>
             </div>
         </div>
         <input type="text" class="form-control" name="approval" value="Proses Approval" hidden>

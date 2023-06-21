@@ -99,7 +99,7 @@
                             @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $pengajuan_pembelian->id }}</td>
+                                    <td>{{ $pengajuan_pembelian->id_pengajuanpembelian }}</td>
                                     <td>{{ $pengajuan_pembelian->id_sppk }}</td>
                                     <td>{{ $pengajuan_pembelian->dealer }}</td>
                                     <td>{{ $pengajuan_pembelian->merk }}</td>
@@ -114,7 +114,7 @@
                                     <td>{{ $pengajuan_pembelian->total }}</td>
                                     <td>{{ $pengajuan_pembelian->approval }}</td>
                                     <td>
-                                      <button class="btn btn-warning btn-icon-split btn-sm" data-toggle="modal" data-target="#rejectModal{{ $pengajuan_pembelian->id }}">
+                                      <button class="btn btn-warning btn-icon-split btn-sm" data-toggle="modal" data-target="#rejectModal{{ $pengajuan_pembelian->id_pengajuanpembelian }}">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
@@ -122,7 +122,7 @@
                                       </button>
                                     </td>
                                     <td>
-                                      <button class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#approveModal{{ $pengajuan_pembelian->id }}">
+                                      <button class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#approveModal{{ $pengajuan_pembelian->id_pengajuanpembelian }}">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-thumbs-up"></i>
                                         </span>
@@ -130,7 +130,7 @@
                                     </button>
                                     </td>
                                     <td>
-                                      <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal{{ $pengajuan_pembelian->id }}">
+                                      <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal{{ $pengajuan_pembelian->id_pengajuanpembelian }}">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-info-circle"></i>
                                         </span>
@@ -144,8 +144,8 @@
                       </table>
                                 <!-- Modal Detail pengajuan_pembelian -->
                             @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
-                                <div class="modal fade" id="detailModal{{ $pengajuan_pembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal fade" id="detailModal{{ $pengajuan_pembelian->id_pengajuanpembelian }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
                                       <div class="modal-content">
                                           <div class="modal-header">
                                               <h5 class="modal-title" id="detailModalLabel">Detail Pengajuan Pembelian</h5>
@@ -158,13 +158,12 @@
                                               <table class="table">
                                                 <tbody>
                                                   <!-- Kolom pertama -->
-
                                                   <tr>
                                                     <td colspan ="4"><h5><b>Data Pengajuan Pembelian</b></h5></td>
                                                   </tr>
                                                   <tr>
                                                     <td><b>No Polisi</b></td>
-                                                    <td><b>{{ $pengajuan_pembelian->id }}</b></td>
+                                                    <td><b>{{ $pengajuan_pembelian->id_pengajuanpembelian }}</b></td>
                                                     <td><b>Merk:</b></td> 
                                                     <td><b>{{ $pengajuan_pembelian->merk }}</b></td>
                                                   </tr>
@@ -209,7 +208,7 @@
                            @endforeach 
                                 <!-- Modal Approve pengajuan_pembelian -->
                                 @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
-                                <div class="modal fade" id="approveModal{{ $pengajuan_pembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="approveModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="approveModal{{ $pengajuan_pembelian->id_pengajuanpembelian }}" tabindex="-1" role="dialog" aria-labelledby="approveModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                       <div class="modal-content">
                                           <div class="modal-header">
@@ -218,7 +217,7 @@
                                                   <span aria-hidden="true">&times;</span>
                                               </button>
                                           </div>
-                                          <form action="{{route('pengajuanpembelian.approved', $pengajuan_pembelian->id)}}" method="POST">
+                                          <form action="{{route('pengajuanpembelian.approved', $pengajuan_pembelian->id_pengajuanpembelian)}}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">
@@ -240,8 +239,9 @@
 
                                 <!-- Modal Reject pengajuan_pembelian -->
                                 @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
-                                <div class="modal fade" id="rejectModal{{ $pengajuan_pembelian->id }}" tabindex="-1" role="dialog" aria-labelledby="rejectModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal fade" id="rejectModal{{ $pengajuan_pembelian->id_pengajuanpembelian }}" tabindex="-1" role="dialog" aria-labelledby="rejectModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+
                                       <div class="modal-content">
                                           <div class="modal-header">
                                               <h5 class="modal-title" id="rejectModalLabel">Reject Pengajuan Pembelian</h5>
@@ -249,9 +249,9 @@
                                                   <span aria-hidden="true">&times;</span>
                                               </button>
                                           </div>
+
                                           <table class="table">
-                                          <form action="{{route('pengajuanpembelian.reject', $pengajuan_pembelian->id)}}" method="POST">
-                                          
+                                          <form action="{{route('pengajuanpembelian.reject', $pengajuan_pembelian->id_pengajuanpembelian)}}" method="POST">
                                           <tbody> 
                                             @csrf
                                             @method('PUT')
@@ -260,7 +260,7 @@
                                                     <!-- Kolom pertama -->
                                                     <tr>
                                                       <td><b>No Polisi:</b></td>
-                                                      <td><b>{{ $pengajuan_pembelian->id }}</b></td>
+                                                      <td><b>{{ $pengajuan_pembelian->id_pengajuanpembelian }}</b></td>
                                                       <td><b>Merk:</b></td> 
                                                       <td><b>{{ $pengajuan_pembelian->merk }}</b></td>
                                                     </tr>
@@ -273,7 +273,6 @@
                                                     <tr>
                                                       <td><b>Tanggal Beli: {{ $pengajuan_pembelian->tanggal_beli }}</b></td>
                                                     </tr>
-
                                                     <!-- Kolom kedua -->
                                                     <tr>
                                                       <td colspan ="4"><h5><b>Data Kendaraan</b></h5></td>
