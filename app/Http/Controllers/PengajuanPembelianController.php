@@ -58,10 +58,10 @@ class PengajuanPembelianController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id_pengajuanpembelian
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_pengajuanpembelian)
     {
         //
     }
@@ -69,12 +69,12 @@ class PengajuanPembelianController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id_pengajuanpembelian
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_pengajuanpembelian)
     {
-        $pengajuan_pembelian = PengajuanPembelian::where('id', $id)->first();
+        $pengajuan_pembelian = PengajuanPembelian::where('id_pengajuanpembelian', $id_pengajuanpembelian)->first();
 
         return view('admin.PengajuanPembelian.edit', compact('pengajuan_pembelian'));
     }
@@ -83,24 +83,24 @@ class PengajuanPembelianController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $id_pengajuanpembelian
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_pengajuanpembelian)
     {
-        $pengajuan_pembelian = PengajuanPembelian::where('id', $id)->first();
+        $pengajuan_pembelian = PengajuanPembelian::where('id_pengajuanpembelian', $id_pengajuanpembelian)->first();
         $pengajuan_pembelian->fill($request->all());
         $pengajuan_pembelian->approval = 'Proses Approval';
         $pengajuan_pembelian->save();
 
         // Redirect atau tampilkan pesan berhasil
-        return redirect()->route('pengajuanpembelian.revisi', $pengajuan_pembelian->id)->with('success', 'Data pengajuan pembelian berhasil direvisi.');
+        return redirect()->route('pengajuanpembelian.revisi', $pengajuan_pembelian->id_pengajuanpembelian)->with('success', 'Data pengajuan pembelian berhasil direvisi.');
     }
 
-    public function approved(Request $request, $id)
+    public function approved(Request $request, $id_pengajuanpembelian)
     {
         // Cari kendaraan berdasarkan nomor polisi
-        $pengajuan_pembelian = PengajuanPembelian::where('id', $id)->first();
+        $pengajuan_pembelian = PengajuanPembelian::where('id_pengajuanpembelian', $id_pengajuanpembelian)->first();
 
         
         $pengajuan_pembelian->approval = 'Approved';
@@ -112,14 +112,14 @@ class PengajuanPembelianController extends Controller
         return redirect()->back()->with('success', 'Pengajuan Pembelian Kendaraan diapprove');
     }
 
-    public function reject(Request $request, $id)
+    public function reject(Request $request, $id_pengajuanpembelian)
     {
         // Cari kendaraan berdasarkan nomor polisi
-        $pengajuan_pembelian = PengajuanPembelian::where('id', $id)->first();
+        $pengajuan_pembelian = PengajuanPembelian::where('id_pengajuanpembelian', $id_pengajuanpembelian)->first();
 
         $pengajuan_pembelian->approval = 'Reject';
-        $pengajuan_pembelian->save();
         $pengajuan_pembelian->update($request->all());
+        $pengajuan_pembelian->save();
 
         // Tambahkan pesan berhasil ke session
         session()->flash('reject', 'Pengajuan Pembelian Kendaraan berhasil di Reject');
@@ -131,10 +131,10 @@ class PengajuanPembelianController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $id_pengajuanpembelian
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_pengajuanpembelian)
     {
         //
     }

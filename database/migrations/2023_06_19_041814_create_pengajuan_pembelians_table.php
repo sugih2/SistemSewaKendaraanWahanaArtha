@@ -14,7 +14,7 @@ class CreatePengajuanPembeliansTable extends Migration
     public function up()
     {
         Schema::create('pengajuan_pembelians', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id_pengajuanpembelian');
             $table->string('nama_p_dealer');
             $table->date('tanggal_p_dealer');
             $table->string('harga_p_dealer');
@@ -34,6 +34,8 @@ class CreatePengajuanPembeliansTable extends Migration
             $table->string('total');
             $table->string('id_sppk');
             $table->string('approval');
+            $table->string('keterangan')->nullable();
+            $table->string('status_transaksi');
 
             $table->timestamps();
         });
