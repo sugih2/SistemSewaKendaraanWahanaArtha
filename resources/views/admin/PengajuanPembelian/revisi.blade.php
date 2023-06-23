@@ -122,7 +122,7 @@
                       </table>
                       <!-- Modal Detail pengajuan_pembelian -->
                     @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
-                    <div class="modal fade" id="detailModal{{ $pengajuan_pembelian->_pengajuanpembelian }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="detailModal{{ $pengajuan_pembelian->id_pengajuanpembelian }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                           <div class="modal-header">

@@ -38,7 +38,7 @@
           <h6 class="collapse-header">Kelola Pembelian</h6>
           <a class="collapse-item" href="{{ url('/pengajuanpembelian/create') }}">Pengajuan Pembelian</a>
           <a class="collapse-item" href="{{ url('/pengajuanpembelian/') }}">Data Pengajuan Pembelian</a>
-          <a class="collapse-item" href="{{ url('#') }}">Transaksi Pembelian</a>
+          <a class="collapse-item" href="{{ url('/transaksipembelian') }}">Transaksi Pembelian</a>
         </div>
       </div>
     </li>

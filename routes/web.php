@@ -55,6 +55,7 @@ Route::prefix('transaksipembelian')->group(function () {
 
 Route::resource('/pengajuanpembelian', 'PengajuanPembelianController');
 Route::resource('/transaksipembelian', 'TransaksiPembelianController');
+Route::resource('/stdealertowahana', 'StdealertowahanaController');
 Route::resource('/kendaraan', 'KendaraanController');
 Route::resource('/service', 'ServiceController');
 Route::resource('/bpkb', 'BpkbController');
