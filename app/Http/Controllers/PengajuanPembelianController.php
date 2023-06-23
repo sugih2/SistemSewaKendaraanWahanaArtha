@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\PengajuanPembelian;
 use Illuminate\Http\Request;
+use PDF;
 
 class PengajuanPembelianController extends Controller
 {
@@ -28,6 +29,14 @@ class PengajuanPembelianController extends Controller
     {
         $pengajuan_pembelians = PengajuanPembelian::where('approval', 'Reject')->get();
         return view('admin.PengajuanPembelian.revisi', compact('pengajuan_pembelians'));
+    }
+
+    public function cetak_pdf()
+    {
+    	$pengajuan_pembelians = PengajuanPembelian::all();
+ 
+    	$pdf = PDF::loadview('admin.PengajuanPembelian.pdf', compact('pengajuan_pembelians'));
+    	return $pdf->download('laporan-pengajuanpembelian-pdf');
     }
 
     /**

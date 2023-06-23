@@ -61,7 +61,7 @@
             </div>
             <div class="col-sm-4">
               <label for="">Biaya Transaksi Pembelian</label>
-              <input type="text" class="form-control @error('pembayaran_transaksi_p') is-invalid @enderror" name="pembayaran_transaksi_p" value="{{ old('pembayaran_transaksi_p') }}" required autocomplete="pembayaran_transaksi_p" autofocus>
+              <input type="text" class="form-control @error('pembayaran_transaksi_p') is-invalid @enderror" placeholder="Rp " name="pembayaran_transaksi_p" id="pembayaran_transaksi_p" value="{{ old('pembayaran_transaksi_p') }}" required autocomplete="pembayaran_transaksi_p" autofocus>
             </div>
             <div class="col-sm-4">
               <label for="">Bukti Transaksi</label>
@@ -91,6 +91,22 @@
 
 
   @include('layout.footer')
+  <script>
+    $(document).ready(function() {
+      $('#pembayaran_transaksi_p').on('input', function() {
+            var value = $(this).val();
+            if (value !== '') {
+                value = value.replace(/[^\d]/g, ''); // Menghapus semua karakter selain angka
+                value = 'Rp ' + formatNumber(value);
+            }
+            $(this).val(value);
+        });
+        // Fungsi untuk menambahkan pemisah ribuan
+        function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+    });   
+</script>
 
 
 </body>

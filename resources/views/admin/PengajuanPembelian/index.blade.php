@@ -39,7 +39,7 @@
               <a href="{{ route('pengajuanpembelian.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2">
                 <i class="fas fa-plus fa-sm text-white-50"></i> Tambah
               </a>
-              <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+              <a href="{{ route('pengajuanpembelian.pdf') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
               </a>
             </div>
@@ -108,7 +108,7 @@
                                     <td>{{ $pengajuan_pembelian->tahun }}</td>
                                     <td>{{ $pengajuan_pembelian->warna }}</td>
                                     <td>{{ $pengajuan_pembelian->deskripsi }}</td>
-                                    <td>{{ $pengajuan_pembelian->harga }}</td>
+                                    <td>Rp.{{ $pengajuan_pembelian->harga }}</td>
                                     <td>{{ $pengajuan_pembelian->bbn }}</td>
                                     <td>{{ $pengajuan_pembelian->otr }}</td>
                                     <td>{{ $pengajuan_pembelian->karoseri }}</td>
@@ -137,8 +137,11 @@
   @include('layout.footer')
   <script>
   $(document).ready( function () {
-    $('#dataTable').DataTable();
-  } );
+    $('#dataTable, #harga').DataTable();
+  }
+  function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        } );
   </script>
 </body>
 
