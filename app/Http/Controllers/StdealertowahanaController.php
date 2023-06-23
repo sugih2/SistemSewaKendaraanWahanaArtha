@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\StdealertoWahana;
 use Illuminate\Http\Request;
 
-class StdealertowahanaController extends Controller
+class STDealertoWahanaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class StdealertowahanaController extends Controller
      */
     public function index()
     {
-        $stdealertowahanas = StdealertoWahana::all();
-        return view('admin.service.index', compact('stdealertowahanas'));
+        //
     }
 
     /**
@@ -25,7 +23,7 @@ class StdealertowahanaController extends Controller
      */
     public function create()
     {
-        return view('admin.stdealertowahana.create');
+        //
     }
 
     /**
@@ -36,8 +34,7 @@ class StdealertowahanaController extends Controller
      */
     public function store(Request $request)
     {
-        StdealertoWahana::create($request->all());
-        return redirect('stdealertowahanas');
+        //
     }
 
     /**
@@ -59,7 +56,7 @@ class StdealertowahanaController extends Controller
      */
     public function edit($id)
     {
-        return view('stdealertowahana.edit', compact('stdealertowahanas'));
+        //
     }
 
     /**
@@ -71,8 +68,7 @@ class StdealertowahanaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $stdealertowahanas->update($request->all());
-        return redirect('stdealertowahanas');
+        //
     }
 
     /**
@@ -83,7 +79,6 @@ class StdealertowahanaController extends Controller
      */
     public function destroy($id)
     {
-        $stdealertowahanas->delete();
-        return redirect('stdealertowahanas');
+        //
     }
 }
