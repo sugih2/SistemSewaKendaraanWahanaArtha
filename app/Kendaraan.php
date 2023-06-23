@@ -10,9 +10,9 @@ class Kendaraan extends Model
 {
     protected $table = 'kendaraans';
     protected $primaryKey = 'id';
-    protected $fillable = ['no_polisi', 'merk', 'tipe', 'jenis', 'kondisi', 'no_rangka', 'no_mesin', 
-                        'tahun_rakitan', 'warna', 'tanggal_beli', 'harga_off', 'bbn', 'karoseri', 'total', 
-                        'tahun', 'rate', 'harga_sewa', 'lokasi', 'status', 'approval', 'keterangan'];
+    protected $fillable = ['no_polisi', 'merk', 'tipe', 'kategori', 'kondisi', 'no_rangka', 'no_mesin', 
+                        'tahun_rakitan', 'warna', 'tanggal_beli', 'harga_off', 'bbn', 'otr', 'karoseri', 'total', 
+                        'rate', 'harga_sewa', 'lokasi', 'status', 'approval', 'keterangan'];
 
     public function bpkb()
     {

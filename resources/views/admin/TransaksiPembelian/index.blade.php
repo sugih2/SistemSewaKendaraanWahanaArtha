@@ -113,7 +113,7 @@
                       <tbody>
                           <tr>
                               <th>Pengajuan Pembelian</th>
-                              <th></th>
+                              <th>{{count($all_pengajuan_pembelians)}}</th>
                           </tr>
                           <tr>
                               <td>Proses Approval</td>
@@ -121,7 +121,11 @@
                           </tr>
                           <tr>
                               <td>Reject</td>
-                              <td></td>
+                              <td>{{count($revisi_pengajuan_pembelians)}}</td>
+                          </tr>
+                          <tr>
+                              <td>Approved</td>
+                              <td>{{count($approved_pengajuan_pembelians)}}</td>
                           </tr>
                           <tr>
                               <th>Transaksi Pembelian</th>
@@ -134,6 +138,10 @@
                         <tr>
                             <td>Reject</td>
                             <td>{{count($revisi_transaksi_pembelians)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Approved</td>
+                            <td>{{count($approved_transaksi_pembelians)}}</td>
                         </tr>
                           <tr>
                               <th>Serah Terima Dealer ke Wahana</th>
