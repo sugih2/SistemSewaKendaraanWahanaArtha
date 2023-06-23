@@ -20,6 +20,7 @@ class CreateBPKBSTable extends Migration
             $table->string('nama_bpkb');
             $table->string('posisi_bpkb');
             $table->string('approval');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }
