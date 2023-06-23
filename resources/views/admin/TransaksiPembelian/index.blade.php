@@ -193,7 +193,7 @@
                                 
                               </td>
                               <td>
-                                  <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal{{ $pengajuan_pembelian->id_pengajuanpembelian }}">
+                                  <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal{{ $transaksi_pembelian->id_transaksipembelian }}">
                                       <span class="icon text-white-50">
                                           <i class="fas fa-info-circle"></i>
                                       </span>
@@ -204,6 +204,46 @@
                           @endforeach
                       </tbody>
                   </table>
+                  @foreach ($transaksi_pembelians as $transaksi_pembelian)
+                    <div class="modal fade" id="detailModal{{ $transaksi_pembelian->id_transaksipembelian }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="detailModalLabel">Detail Transaksi Pembelian</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                              <table class="table">
+                                <tbody>
+                                  <tr>
+                                    <td colspan="4"><h5><b>Data Transaksi Pembelian</b></h5></td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Id Transaksi</b></td>
+                                    <td><b>{{ $transaksi_pembelian->id_transaksipembelian }}</b></td>
+                                    <td><b>Tanggal Transaksi</b></td>
+                                    <td>{{ $transaksi_pembelian->tanggal_transaksi_p }}</td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Pembayaran Transaksi</b></td>
+                                    <td colspan="3">{{$transaksi_pembelian->pembayaran_transaksi_p}}</td>
+                                  </tr>
+                                </tbody>
+                                
+                              </table>
+                              
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    @endforeach
               </div>
           </div>
       </div>
