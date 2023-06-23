@@ -21,6 +21,7 @@ class CreateSTNKSTable extends Migration
             $table->date('tanggal_bayar_stnk');
             $table->string('biaya_stnk');
             $table->string('approval');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

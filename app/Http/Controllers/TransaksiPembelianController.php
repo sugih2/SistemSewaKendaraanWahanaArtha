@@ -19,8 +19,12 @@ class TransaksiPembelianController extends Controller
         $proses_transaksi_pembelians = TransaksiPembelian::where('approval', 'Proses Approval')->get();
         $pengajuan_pembelians = PengajuanPembelian::where('approval', 'Approved')->where('status_transaksi', 'Belum Dibayar')->get();
         $transaksi_pembelians = TransaksiPembelian::all();
+        $all_pengajuan_pembelians = PengajuanPembelian::all();
         $revisi_transaksi_pembelians = TransaksiPembelian::where('approval', 'Reject')->get();
-        return view ('admin.TransaksiPembelian.index', compact('pengajuan_pembelians', 'transaksi_pembelians', 'revisi_transaksi_pembelians', 'proses_pengajuan_pembelians', 'proses_transaksi_pembelians'));
+        $revisi_pengajuan_pembelians = PengajuanPembelian::where('approval', 'Reject')->get();
+        $approved_transaksi_pembelians = TransaksiPembelian::where('approval', 'Approved')->get();
+        $approved_pengajuan_pembelians = PengajuanPembelian::where('approval', 'Approved')->get();
+        return view ('admin.TransaksiPembelian.index', compact('pengajuan_pembelians', 'transaksi_pembelians', 'revisi_transaksi_pembelians', 'proses_pengajuan_pembelians', 'proses_transaksi_pembelians', 'revisi_pengajuan_pembelians', 'approved_transaksi_pembelians', 'approved_pengajuan_pembelians', 'all_pengajuan_pembelians'));
     }
 
     public function approval()

@@ -18,7 +18,7 @@ class CreateKendaraansTable extends Migration
             $table->string('no_polisi')->unique();
             $table->string('merk');
             $table->string('tipe');
-            $table->string('jenis');
+            $table->string('kategori');
             $table->string('kondisi');
             $table->string('no_rangka');
             $table->string('no_mesin');
@@ -27,9 +27,9 @@ class CreateKendaraansTable extends Migration
             $table->date('tanggal_beli');
             $table->string('harga_off');
             $table->string('bbn');
+            $table->string('otr');
             $table->string('karoseri');
             $table->string('total');
-            $table->string('tahun');
             $table->string('rate');
             $table->string('harga_sewa');
             $table->string('lokasi');

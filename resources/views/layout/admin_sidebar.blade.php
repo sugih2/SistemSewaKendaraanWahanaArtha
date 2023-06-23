@@ -36,8 +36,7 @@
       <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Kelola Pembelian</h6>
-          <a class="collapse-item" href="{{ url('/pengajuanpembelian/create') }}">Pengajuan Pembelian</a>
-          <a class="collapse-item" href="{{ url('/pengajuanpembelian/') }}">Data Pengajuan Pembelian</a>
+          <a class="collapse-item" href="{{ url('/pengajuanpembelian') }}">Pengajuan Pembelian</a>
           <a class="collapse-item" href="{{ url('/transaksipembelian') }}">Transaksi Pembelian</a>
         </div>
       </div>
