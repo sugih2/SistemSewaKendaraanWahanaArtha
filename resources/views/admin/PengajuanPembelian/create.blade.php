@@ -70,6 +70,7 @@
         </div>
             <div class="col-sm-4">
               <label for="">Biaya Sewa</label>
+
               <input type="text" class="form-control" name="" value="{{ $pengajuan_sewas->biaya_sewa }}" readonly>
             </div>
             <div class="col-sm-4">
@@ -89,7 +90,7 @@
             </div>
             <div class="col-sm-4">
               <label for="">Harga</label>
-              <input type="text" class="form-control @error('harga_p_dealer') is-invalid @enderror" name="harga_p_dealer" value="{{ old('harga_p_dealer') }}" required autocomplete="harga_p_dealer" autofocus>
+              <input type="text" class="form-control @error('harga_p_dealer') is-invalid @enderror" placeholder="Rp." id="harga_p_dealer" name="harga_p_dealer" value="{{ old('harga_p_dealer') }}" required autocomplete="harga_p_dealer" autofocus>
             </div>
         </div>
         <h4 class="h4 mb-10 text-gray-800">3. Surat Penawaran Karoseri</h4>
@@ -104,7 +105,7 @@
             </div>
             <div class="col-sm-4">
               <label for="">Harga</label>
-              <input type="text" class="form-control @error('harga_p_karoseri') is-invalid @enderror" name="harga_p_karoseri" value="{{ old('harga_p_karoseri') }}" required autocomplete="harga_p_karoseri" autofocus>
+              <input type="text" class="form-control @error('harga_p_karoseri') is-invalid @enderror" placeholder="Rp." name="harga_p_karoseri" id="harga_p_karoseri" value="{{ old('harga_p_karoseri') }}" required autocomplete="harga_p_karoseri" autofocus>
             </div>
         </div>
         <br>
@@ -120,7 +121,7 @@
             </div>
             <div class="col-sm-4">
               <label for="">Harga</label>
-              <input type="text" class="form-control @error('harga') is-invalid @enderror" name="harga" value="{{ old('harga') }}" required autocomplete="harga" autofocus>
+              <input type="text" class="form-control @error('harga') is-invalid @enderror" placeholder="Rp." id="harga" name="harga" value="{{ old('harga') }}" required autocomplete="harga" onchange="hitungTotal()" autofocus>
             </div>
         </div>
         <div class="form-group row">
@@ -134,7 +135,7 @@
             </div>
             <div class="col-sm-4">
               <label for="">BBN</label>
-              <input type="text" class="form-control @error('bbn') is-invalid @enderror" name="bbn" value="{{ old('bbn') }}" required autocomplete="bbn" autofocus>
+              <input type="text" class="form-control @error('bbn') is-invalid @enderror" placeholder="Rp." id="bbn" name="bbn" value="{{ old('bbn') }}" required autocomplete="bbn" onchange="hitungTotal()" autofocus>
             </div>
         </div>
         <div class="form-group row">
@@ -144,7 +145,7 @@
             </div>
             <div class="col-sm-4 offset-sm-4">
               <label for="">OTR</label>
-              <input type="text" class="form-control @error('otr') is-invalid @enderror" name="otr" value="{{ old('otr') }}" required autocomplete="otr" autofocus>
+              <input type="text" class="form-control @error('otr') is-invalid @enderror" placeholder="Rp." id="otr" name="otr" value="{{ old('otr') }}" required autocomplete="otr" onchange="hitungTotal()"autofocus>
             </div>
         </div>
         <div class="form-group row">
@@ -154,7 +155,7 @@
             </div>
             <div class="col-sm-4 offset-sm-4">
               <label for="">Karoseri</label>
-              <input type="text" class="form-control @error('karoseri') is-invalid @enderror" name="karoseri" value="{{ old('karoseri') }}" required autocomplete="karoseri" autofocus>
+              <input type="text" class="form-control @error('karoseri') is-invalid @enderror" placeholder="Rp." id="karoseri" name="karoseri" value="{{ old('karoseri') }}" required autocomplete="karoseri" onchange="hitungTotal()" autofocus>
             </div>
         </div>
         <div class="form-group row">
@@ -164,7 +165,7 @@
             </div>
             <div class="col-sm-4 offset-sm-4">
               <label for="">Total</label>
-              <input type="text" class="form-control @error('total') is-invalid @enderror" name="total" value="{{ old('total') }}" required autocomplete="total" autofocus>
+              <input type="text" class="form-control @error('total') is-invalid @enderror" plcaeholder="Rp" id="total" name="total" value="{{ old('total') }}" required autocomplete="total" autofocus>
             </div>
         </div>
         <input type="text" class="form-control" name="status_transaksi" value="Belum Dibayar" hidden>
@@ -191,6 +192,38 @@
 
 
   @include('layout.footer')
+  <script>
+    $(document).ready(function() {
+      $('#biaya_sewa, #harga_p_dealer, #harga_p_karoseri, #harga, #bbn, #karoseri, #otr, #total').on('input', function() {
+            var value = $(this).val();
+            if (value !== '') {
+                value = value.replace(/[^\d]/g, ''); // Menghapus semua karakter selain angka
+                value = 'Rp ' + formatNumber(value);
+            }
+            $(this).val(value);
+            hitungTotal(); // Memanggil fungsi hitungTotal() setiap kali nilai input berubah
+        });
+
+        function hitungTotal() {
+        var harga = parseFloat(document.getElementById('harga').value.replace(/[^\d]/g, "")) || 0;
+        var bbn = parseFloat(document.getElementById('bbn').value.replace(/[^\d]/g, "")) || 0;
+        var otr = parseFloat(document.getElementById('otr').value.replace(/[^\d]/g, "")) || 0;
+        var karoseri = parseFloat(document.getElementById('karoseri').value.replace(/[^\d]/g, "")) || 0;
+
+        var total = harga + bbn + otr + karoseri;
+        var formattedTotal = formatNumber(total);
+        var totalInput = document.getElementById('total');
+        totalInput.value = 'Rp ' + formattedTotal;
+        totalInput.setAttribute( 'placeholder','Rp ' + formattedTotal);
+    }
+
+        // Fungsi untuk menambahkan pemisah ribuan
+        function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+    });
+    
+</script>
 
 
 </body>

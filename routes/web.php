@@ -28,6 +28,7 @@ Route::prefix('pengajuanpembelian')->group(function () {
     Route::get('/revisi', 'PengajuanPembelianController@revisi')->name('pengajuanpembelian.revisi');
     Route::get('/{id_pengajuanpembelian}/edit', 'PengajuanPembelianController@edit')->name('pengajuanpembelian.edit');
     Route::put('/{id_pengajuanpembelian}', 'PengajuanPembelianController@update')->name('pengajuanpembelian.update');
+    Route::get('/cetak_pdf', 'PengajuanPembelianController@cetak_pdf')->name('pengajuanpembelian.pdf');
 });
 
 

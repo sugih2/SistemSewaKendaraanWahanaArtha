@@ -21,6 +21,7 @@ class STDealertoWahanaController extends Controller
      */
     public function index()
     {
+
         $pengajuan_pembelians = PengajuanPembelian::all();
         $transaksi_pembelians = TransaksiPembelian::all();
         $stdealertowahanas = STDealertoWahana::all();
@@ -165,7 +166,7 @@ class STDealertoWahanaController extends Controller
      */
     public function edit($id)
     {
-        return view('stdealertowahana.edit', compact('stdealertowahanas'));
+        //
     }
 
     /**
