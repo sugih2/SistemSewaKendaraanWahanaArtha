@@ -38,6 +38,7 @@
           <h6 class="collapse-header">Kelola Pembelian</h6>
           <a class="collapse-item" href="{{ url('/pengajuanpembelian') }}">Pengajuan Pembelian</a>
           <a class="collapse-item" href="{{ url('/transaksipembelian') }}">Transaksi Pembelian</a>
+          <a class="collapse-item" href="{{ url('/stdealertowahana') }}">Serah Terima Dealer to Wahana</a>
         </div>
       </div>
     </li>
@@ -98,21 +99,16 @@
       Sewa Kendaraan
     </div>
     <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSewa" aria-expanded="true" aria-controls="collapseSewa">
-        <i class="fas fa-fw fa-address-book"></i>
-        <span>Sewa</span>
+      <a class="nav-link" href="{{ url('/sppk') }}">
+        <i class="fas fa-fw fa-envelope"></i>
+        <span>SPPK</span>
       </a>
-      <div id="collapseSewa" class="collapse" aria-labelledby="headingSewa" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Kelola Transaksi Sewa</h6>
-          <a class="collapse-item" href="#">Data Transaksi</a>
-          <a class="collapse-item" href="#">Tambah Sewa</a>
-          <a class="collapse-item" href="#">Pengembalian</a>
-          <a class="collapse-item" href="#">Pemberhentian</a>
-          <a class="collapse-item" href="#">Penggantian Permanen</a>
-          <a class="collapse-item" href="#">Penggantian Sementara</a>
-        </div>
-      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('/kontraksewa') }}">
+        <i class="fas fa-fw fa-address-book"></i>
+        <span>Kontrak Sewa</span>
+      </a>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">

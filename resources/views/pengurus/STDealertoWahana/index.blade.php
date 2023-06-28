@@ -8,7 +8,7 @@
   <!-- PTipe Wrapper -->
   <div id="wrapper">
 
-  @include('layout.admin_sidebar')
+  @include('layout.pengurus_sidebar')
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -34,7 +34,7 @@
 
           <!-- PTipe Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800 mr-auto">Data Transaksi Pembelian Kendaraan</h1>
+            <h1 class="h3 mb-0 text-gray-800 mr-auto">Serah Terima Kendaraan Dealer to Wahana</h1>
             <div>
               <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
@@ -46,7 +46,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Data Transaksi Pembayaran</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Data Serah Terima Delaer to Wahana</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -54,38 +54,39 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>ID Serah Terima</th>
                                 <th>ID Pengajuan</th>
-                                <th>ID Transaksi</th>
-                                <th>Tanggal Pembayaran</th>
-                                <th>Jumlah</th>
-                                <th>Bukti</th>
-                                <th>Update</th>
+                                <th>No Polisi</th>
+                                <th>Tanggal Serah Terima</th>
+                                <th>Nama Penyerah</th>
+                                <th>Nama Penerima</th>
                                 <th>Approval</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>No</th>
+                                <th>ID Serah Terima</th>
                                 <th>ID Pengajuan</th>
-                                <th>ID Transaksi</th>
-                                <th>Tanggal Pembayaran</th>
-                                <th>Jumlah</th>
-                                <th>Bukti</th>
-                                <th>Update</th>
+                                <th>No Polisi</th>
+                                <th>Tanggal Serah Terima</th>
+                                <th>Nama Penyerah</th>
+                                <th>Nama Penerima</th>
                                 <th>Approval</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                          @foreach ($all_transaksi_pembelians as $transaksi_pembelian)
+                          @foreach ($stdealertowahanas as $stdealertowahana)
                               <tr>
-                                  <td>{{ $loop->iteration }}</td>
-                                  <td>{{ $transaksi_pembelian->id_pengajuanpembelian }}</td>
-                                  <td>{{ $transaksi_pembelian->id_transaksipembelian }}</td>
-                                  <td>{{ $transaksi_pembelian->tanggal_transaksi_p }}</td>
-                                  <td>{{ $transaksi_pembelian->pembayaran_transaksi_p }}</td>
-                                  <td>{{ $transaksi_pembelian->bukti_transaksi_p }}</td>
-                                  <td>{{ $transaksi_pembelian->updated_at }}</td>
-                                  <td>{{ $transaksi_pembelian->approval }}</td>
+                                  <td>{{$loop->iteration}}</td>
+                                  <td>{{$stdealertowahana->id_stdealertowahana}}</td>
+                                  <td>{{$stdealertowahana->id_pengajuanpembelian}}</td>
+                                  <td>{{$stdealertowahana->no_polisi}}</td>
+                                  <td>{{$stdealertowahana->tgl_st}}</td>
+                                  <td>{{$stdealertowahana->nama_penyerah}}</td>
+                                  <td>{{$stdealertowahana->nama_penerima}}</td>
+                                  <td>{{$stdealertowahana->approval}}</td>
+
                               </tr>
                           @endforeach
                         </tbody>
@@ -113,7 +114,7 @@
                       <tbody>
                           <tr>
                               <th>Pengajuan Pembelian</th>
-                              <th>{{count($all_pengajuan_pembelians)}}</th>
+                              <th>{{count($pengajuan_pembelians)}}</th>
                           </tr>
                           <tr>
                               <td>Proses Approval</td>
@@ -129,7 +130,7 @@
                           </tr>
                           <tr>
                               <th>Transaksi Pembelian</th>
-                              <th>{{count($all_transaksi_pembelians)}}</th>
+                              <th>{{count($transaksi_pembelians)}}</th>
                           </tr>
                           <tr>
                             <td>Proses Approval</td>
@@ -145,7 +146,20 @@
                         </tr>
                           <tr>
                               <th>Serah Terima Dealer ke Wahana</th>
-                              <td></td>
+                              <th>{{count($stdealertowahanas)}}</th>
+                              
+                          <tr>
+                            <td>Proses Approval</td>
+                            <td>{{count($proses_stdealertowahanas)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Reject</td>
+                            <td>{{count($revisi_stdealertowahanas)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Approved</td>
+                            <td>{{count($approved_stdealertowahanas)}}</td>
+                        </tr>
                           </tr>
                       </tbody>
                   </table>
@@ -156,44 +170,44 @@
   <div class="col-lg-6 mb-4">
       <div class="card shadow mb-4">
           <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Pengajuan Pembelian (Belum Dibayar)</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Approval Serah Terima Dealer to Wahana</h6>
           </div>
           <div class="card-body">
               <div class="table-responsive">
                   <table class="table table-bordered" width="100%" cellspacing="0">
                       <thead>
                           <tr>
-                              <th>No</th>
-                              <th>ID Pengajuan</th>
-                              <th>ID SPPK</th>
-                              <th colspan="2">Aksi</th>
+                            <th>No</th>
+                            <th>ID Serah Terima</th>
+                            <th>No Polisi</th>
+                            <th colspan="2">Aksi</th>
                           </tr>
                       </thead>
                       <tfoot>
                           <tr>
                               <th>No</th>
-                              <th>ID Pengajuan</th>
-                              <th>ID SPPK</th>
+                              <th>ID Serah Terima</th>
+                              <th>No Polisi</th>
                               <th colspan="2">Aksi</th>
                           </tr>
                       </tfoot>
                       <tbody>
-                          @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
+                        @foreach ($proses_stdealertowahanas as $proses_stdealertowahana)
                           <tr>
-                              <td>{{ $loop->iteration }}</td>
-                              <td>{{ $pengajuan_pembelian->id_pengajuanpembelian }}</td>
-                              <td>{{ $pengajuan_pembelian->id_sppk }}</td>
+                              <td>{{$loop->iteration}}</td>
+                              <td>{{$proses_stdealertowahana->id_stdealertowahana}}</td>
+                              <td>{{$proses_stdealertowahana->no_polisi}}</td>
                               <td>
-                                <a href="{{ route('transaksipembelian.create', ['id_pengajuanpembelian' => $pengajuan_pembelian->id_pengajuanpembelian]) }}" class="btn btn-success btn-icon-split btn-sm">
+                                <a href="{{route('stdealertowahana.approved', ['no_polisi' => $proses_stdealertowahana->no_polisi])}}" class="btn btn-success btn-icon-split btn-sm">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-credit-card"></i>
                                     </span>
-                                    <span class="text">Bayar</span>
+                                    <span class="text">Approve</span>
                                 </a>
                                 
                               </td>
                               <td>
-                                  <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal{{ $pengajuan_pembelian->id_pengajuanpembelian }}">
+                                  <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal">
                                       <span class="icon text-white-50">
                                           <i class="fas fa-info-circle"></i>
                                       </span>
@@ -201,10 +215,10 @@
                                   </button>
                               </td>
                           </tr>
-                          @endforeach
+                        @endforeach
                       </tbody>
                   </table>
-                  @foreach ($all_transaksi_pembelians as $transaksi_pembelian)
+                  {{-- @foreach ($transaksi_pembelians as $transaksi_pembelian)
                     <div class="modal fade" id="detailModal{{ $transaksi_pembelian->id_transaksipembelian }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
@@ -243,63 +257,10 @@
                         </div>
                       </div>
                     </div>
-                    @endforeach
+                    @endforeach --}}
               </div>
           </div>
       </div>
-      <div class="card shadow">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Revisi Transaksi Pembelian</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>ID Transaksi</th>
-                            <th>Keterangan</th>
-                            <th colspan="2">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>ID Transaksi</th>
-                            <th>Keterangan</th>
-                            <th colspan="2">Aksi</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        @foreach ($revisi_transaksi_pembelians as $revisi_transaksi_pembelian)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $revisi_transaksi_pembelian->id_transaksipembelian }}</td>
-                            <td>{{ $revisi_transaksi_pembelian->keterangan }}</td>
-                            <td>
-                              <a href="{{ route('transaksipembelian.edit', $revisi_transaksi_pembelian->id_transaksipembelian)}}" class="btn btn-primary btn-icon-split btn-sm">
-                                  <span class="icon text-white-50">
-                                      <i class="fas fa-edit"></i>
-                                  </span>
-                                  <span class="text">Revisi</span>
-                              </a>
-                              
-                            </td>
-                            <td>
-                                <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal{{ $revisi_transaksi_pembelian->id_transaksipembelian }}">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-info-circle"></i>
-                                    </span>
-                                    <span class="text">Detail</span>
-                                </button>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
   </div>
 </div>
 

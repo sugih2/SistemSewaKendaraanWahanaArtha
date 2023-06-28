@@ -45,31 +45,36 @@
         <b>
         <h4 class="h4 mb-10 text-gray-800">1. SPPK</h4>
         <div class="form-group row">
+            <input type="text" class="form-control @error('nama_p_dealer') is-invalid @enderror" name="id_sppk" value="{{$pengajuan_sewas->id_sppk}}" hidden>
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label for="">Nama PT</label>
-              <input type="text" class="form-control @error('nama_p_dealer') is-invalid @enderror" name="id_sppk" value="{{ old('id_sppk') }}" required autocomplete="id_sppk" autofocus>
+              <input type="text" class="form-control" name="" value="{{ $pengajuan_sewas->nama_pt }}" readonly>
             </div>
             <div class="col-sm-4">
               <label for="">Cabang</label>
-              <input type="text" class="form-control" name="">
+              <input type="text" class="form-control" name="" value="{{ $pengajuan_sewas->nama_cabang }}" readonly>
             </div>
             <div class="col-sm-4">
               <label for="">Tanggal</label>
-              <input type="date" class="form-control" name="">
+              <input type="date" class="form-control" name=""  value="{{ $pengajuan_sewas->tgl_sppk}}" readonly>
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-4 mb-3 mb-sm-0">
-              <label for="">JW Sewa</label>
-              <input type="text" class="form-control" name="">
-            </div>
+          <div class="col-sm-4 mb-3 mb-sm-0">
+            <label for="periode_sewa">JW Sewa</label>
+            <div class="form-inline">
+                <input type="date" class="form-control col-sm-5" name="tgl_awal" value="{{ $pengajuan_sewas->tgl_awal }}" readonly>
+                <div class="mx-2"></div>
+                <input type="date" class="form-control col-sm-5" name="tgl_akhir" value="{{ $pengajuan_sewas->tgl_akhir }}" readonly>
+            </div>                
+        </div>
             <div class="col-sm-4">
               <label for="">Biaya Sewa</label>
-              <input type="text" class="form-control" name="">
+              <input type="text" class="form-control" name="" value="{{ $pengajuan_sewas->biaya_sewa }}" readonly>
             </div>
             <div class="col-sm-4">
               <label for="">% Biaya Sewa</label>
-              <input type="text" class="form-control" name="">
+              <input type="text" class="form-control" name="" readonly>
             </div>
         </div>
         <h4 class="h4 mb-10 text-gray-800">2. Surat Penawaran Harga Kendaraan</h4>

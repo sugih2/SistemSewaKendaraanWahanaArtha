@@ -36,9 +36,6 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800 mr-auto">Data Pengajuan Pembelian Kendaraan</h1>
             <div>
-              <a href="{{ route('pengajuanpembelian.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2">
-                <i class="fas fa-plus fa-sm text-white-50"></i> Tambah
-              </a>
               <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
               </a>
@@ -121,6 +118,221 @@
                   </div>
               </div>
           </div>
+
+<!-- Content Row -->
+<div class="row">
+  <div class="col-lg-6 mb-4">
+      <div class="card shadow">
+          <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Status Pembelian Kendaraan</h6>
+          </div>
+          <div class="card-body">
+              <div class="table-responsive">
+                  <table class="table table-bordered" width="100%" cellspacing="0">
+                      <thead>
+                          <tr>
+                              <th>Status</th>
+                              <th>Jumlah</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <th>Pengajuan Pembelian</th>
+                              <th></th>
+                          </tr>
+                          <tr>
+                              <td>Proses Approval</td>
+                              <td></td>
+                          </tr>
+                          <tr>
+                              <td>Reject</td>
+                              <td></td>
+                          </tr>
+                          <tr>
+                              <td>Approved</td>
+                              <td></td>
+                          </tr>
+                          <tr>
+                              <th>Transaksi Pembelian</th>
+                              <th></th>
+                          </tr>
+                          <tr>
+                            <td>Proses Approval</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Reject</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Approved</td>
+                            <td></td>
+                        </tr>
+                          <tr>
+                              <th>Serah Terima Dealer ke Wahana</th>
+                              <th></th>
+                              
+                          <tr>
+                            <td>Proses Approval</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Reject</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Approved</td>
+                            <td></td>
+                        </tr>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-6 mb-4">
+      <div class="card shadow mb-4">
+          <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Daftar Antrian SPPK</h6>
+          </div>
+          <div class="card-body">
+              <div class="table-responsive">
+                  <table class="table table-bordered" width="100%" cellspacing="0">
+                      <thead>
+                          <tr>
+                              <th>No</th>
+                              <th>ID SPPK</th>
+                              <th colspan="2">Aksi</th>
+                          </tr>
+                      </thead>
+                      <tfoot>
+                          <tr>
+                              <th>No</th>
+                              <th>ID SPPK</th>
+                              <th colspan="2">Aksi</th>
+                          </tr>
+                      </tfoot>
+                      <tbody>
+                        @foreach ($pengajuan_sewas as $pengajuan_sewa)
+                          <tr>
+                              <td>{{$loop->iteration}}</td>
+                              <td>{{$pengajuan_sewa->id_sppk}}</td>
+                              <td>
+                                <a href="{{route('pengajuanpembelian.create', ['id_sppk' => $pengajuan_sewa->id_sppk])}}" class="btn btn-success btn-icon-split btn-sm">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-credit-card"></i>
+                                    </span>
+                                    <span class="text">Buat</span>
+                                </a>
+                                
+                              </td>
+                              <td>
+                                  <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal{{ $pengajuan_sewa->id_sppk }}">
+                                      <span class="icon text-white-50">
+                                          <i class="fas fa-info-circle"></i>
+                                      </span>
+                                      <span class="text">Detail</span>
+                                  </button>
+                              </td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                  </table>
+
+                  @foreach ($pengajuan_sewas as $pengajuan_sewa)
+                    <div class="modal fade" id="detailModal{{ $pengajuan_sewa->id_sppk }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="detailModalLabel">Detail SPPK</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                              <table class="table">
+                                <tbody>
+                                  <tr>
+                                    <td colspan="4"><h5><b>Data Transaksi Pembelian</b></h5></td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Id SPPK</b></td>
+                                    <td><b>{{ $pengajuan_sewa->id_sppk }}</b></td>
+                                    <td><b>Tanggal SPPK</b></td>
+                                    <td>{{ $pengajuan_sewa->tgl_sppk }}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    @endforeach
+              </div>
+          </div>
+      </div>
+      <div class="card shadow">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Data Revisi Kontrak Sewa</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID Kontrak Sewa</th>
+                            <th>Keterangan</th>
+                            <th colspan="2">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>No</th>
+                            <th>ID Kontrak Sewa</th>
+                            <th>Keterangan</th>
+                            <th colspan="2">Aksi</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                      @foreach ($revisi_pengajuan_pembelians as $revisi_pengajuan_pembelian)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$revisi_pengajuan_pembelian->id_pengajuanpembelian}}</td>
+                            <td>
+                              <a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                                  <span class="icon text-white-50">
+                                      <i class="fas fa-edit"></i>
+                                  </span>
+                                  <span class="text">Revisi</span>
+                              </a>
+                              
+                            </td>
+                            <td>
+                                <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-info-circle"></i>
+                                    </span>
+                                    <span class="text">Detail</span>
+                                </button>
+                            </td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
             </div>
         <!-- /.container-fluid -->
 

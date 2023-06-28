@@ -65,10 +65,11 @@
             </div>
             <div class="col-sm-4">
               <label for="">Bukti Transaksi</label>
-              <input type="text" class="form-control @error('bukti_transaksi_p') is-invalid @enderror" name="bukti_transaksi_p" value="{{ old('bukti_transaksi_p') }}" required autocomplete="bukti_transaksi_p" autofocus>
+              <input type="file" class="form-control @error('bukti_transaksi_p') is-invalid @enderror" name="bukti_transaksi_p" value="{{ old('bukti_transaksi_p') }}" required autocomplete="bukti_transaksi_p" autofocus>
             </div>
         </div>
         <input type="text" class="form-control" name="approval" value="Proses Approval" hidden>
+        <input type="text" class="form-control" name="status_st" value="Proses Bayar" hidden>
         <div class="form-group row col-sm-6 mb-3 mb-sm-0">
             <input type="submit" class="btn btn-lg btn-primary shadow-sm" value="Submit">
         </div>

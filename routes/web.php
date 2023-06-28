@@ -52,7 +52,23 @@ Route::prefix('transaksipembelian')->group(function () {
     Route::put('/{id_transaksipembelian}/reject', 'TransaksiPembelianController@reject')->name('transaksipembelian.reject');
 });
 
+Route::prefix('stdealertowahana')->group(function () {
+    Route::get('/create/{id_transaksipembelian}', 'STDealertoWahanaController@create')->name('stdealertowahana.create');
+    Route::get('/approved/{no_polisi}', 'STDealertoWahanaController@approved')->name('stdealertowahana.approved');
+});
 
+Route::prefix('kontraksewa')->group(function () {
+    Route::get('/create', 'KontrakSewaController@create')->name('kontraksewa.create');
+});
+
+Route::prefix('sppk')->group(function () {
+    Route::get('/create', 'PengajuanSewaController@create')->name('sppk.create');
+    Route::put('/approved/{id_sppk}', 'PengajuanSewaController@approved')->name('sppk.approved');
+    Route::put('/{id_sppk}/reject', 'PengajuanSewaController@reject')->name('sppk.reject');
+});
+
+Route::resource('/sppk', 'PengajuanSewaController');
+Route::resource('/kontraksewa', 'KontrakSewaController');
 Route::resource('/pengajuanpembelian', 'PengajuanPembelianController');
 Route::resource('/transaksipembelian', 'TransaksiPembelianController');
 Route::resource('/stdealertowahana', 'StdealertowahanaController');

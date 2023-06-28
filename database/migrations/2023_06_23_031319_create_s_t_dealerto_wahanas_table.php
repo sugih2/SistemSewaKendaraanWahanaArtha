@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSTNKSTable extends Migration
+class CreateSTDealertoWahanasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateSTNKSTable extends Migration
      */
     public function up()
     {
-        Schema::create('s_t_n_k_s', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('s_t_dealerto_wahanas', function (Blueprint $table) {
+            $table->bigIncrements('id_stdealertowahana');
+            $table->date('tgl_st');
+            $table->string('nama_penyerah');
+            $table->string('nama_penerima');
+            $table->unsignedBigInteger('id_pengajuanpembelian');
+            $table->foreign('id_pengajuanpembelian')->references('id_pengajuanpembelian')->on('pengajuan_pembelians')->onDelete('cascade');
             $table->string('no_polisi');
             $table->foreign('no_polisi')->references('no_polisi')->on('kendaraans')->onDelete('cascade');
-            $table->date('tanggal_jt_stnk');
-            $table->date('tanggal_bayar_stnk');
-            $table->string('biaya_stnk');
             $table->string('approval');
             $table->string('keterangan')->nullable();
             $table->timestamps();
@@ -33,6 +35,6 @@ class CreateSTNKSTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_t_n_k_s');
+        Schema::dropIfExists('s_t_dealerto_wahanas');
     }
 }

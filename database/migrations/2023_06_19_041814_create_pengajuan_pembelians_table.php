@@ -32,7 +32,8 @@ class CreatePengajuanPembeliansTable extends Migration
             $table->string('otr');
             $table->string('karoseri');
             $table->string('total');
-            $table->string('id_sppk');
+            $table->unsignedBigInteger('id_sppk');
+            $table->foreign('id_sppk')->references('id_sppk')->on('pengajuan_sewas')->onDelete('cascade');
             $table->string('approval');
             $table->string('keterangan')->nullable();
             $table->string('status_transaksi');
