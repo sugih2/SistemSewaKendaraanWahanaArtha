@@ -18,11 +18,12 @@ class TransaksiPembelians extends Migration
             $table->date('tanggal_transaksi_p');
             $table->string('pembayaran_transaksi_p');
             $table->string('bukti_transaksi_p');
-            $table->string('id_pengajuanpembelian');
+            $table->unsignedBigInteger('id_pengajuanpembelian');
             $table->foreign('id_pengajuanpembelian')->references('id_pengajuanpembelian')->on('pengajuan_pembelians')->onDelete('cascade');
             $table->string('id_sppk');
             $table->string('approval');
             $table->string('keterangan')->nullable();
+            $table->string('status_st');
 
             $table->timestamps();
         });

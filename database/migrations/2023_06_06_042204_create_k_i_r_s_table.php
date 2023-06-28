@@ -21,7 +21,7 @@ class CreateKIRSTable extends Migration
             $table->date('tanggal_bayar_kir');
             $table->string('biaya_kir');
             $table->string('approval');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

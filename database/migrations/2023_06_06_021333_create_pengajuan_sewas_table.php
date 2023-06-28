@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKendaraansTable extends Migration
+class CreatePengajuanSewasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,26 +13,26 @@ class CreateKendaraansTable extends Migration
      */
     public function up()
     {
-        Schema::create('kendaraans', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('no_polisi')->unique();
+        Schema::create('pengajuan_sewas', function (Blueprint $table) {
+            $table->bigIncrements('id_sppk');
+            $table->date('tgl_sppk');
+            $table->string('nama_pt');
+            $table->string('nama_cabang');
+            $table->string('alamat');
             $table->string('kategori');
             $table->string('merk');
             $table->string('tipe');
             $table->string('tahun');
             $table->string('warna');
-            $table->date('tanggal_beli');
-            $table->string('harga_off');
-            $table->string('bbn');
-            $table->string('otr');
-            $table->string('karoseri');
-            $table->string('total');
-            $table->string('no_rangka');
-            $table->string('no_mesin');
-            $table->string('lokasi');
+            $table->string('nama');
+            $table->string('no_hp');
+            $table->string('jabatan');
+            $table->string('biaya_sewa');
+            $table->string('tgl_awal');
+            $table->string('tgl_akhir');
+            $table->string('keterangan')->nullable();
             $table->string('status');
             $table->string('approval');
-            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }
@@ -44,6 +44,6 @@ class CreateKendaraansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kendaraans');
+        Schema::dropIfExists('pengajuan_sewas');
     }
 }

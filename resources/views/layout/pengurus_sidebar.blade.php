@@ -38,7 +38,7 @@
           <h6 class="collapse-header">Kelola Pembelian</h6>
           <a class="collapse-item" href="{{ url('/pengajuanpembelian/approval') }}">Pengajuan Pembelian</a>
           <a class="collapse-item" href="{{ url('#') }}">Transaksi Pembelian</a>
-          <a class="collapse-item" href="#">Approval Jual Kendaraan</a>
+          <a class="collapse-item" href="{{ url('/stdealertowahana') }}">Approval Jual Kendaraan</a>
         </div>
       </div>
     </li>
@@ -82,6 +82,18 @@
     <div class="sidebar-heading">
       Sewa Kendaraan
     </div>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('/sppk') }}">
+        <i class="fas fa-fw fa-envelope"></i>
+        <span>SPPK</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('/kontraksewa') }}">
+        <i class="fas fa-fw fa-address-book"></i>
+        <span>Kontrak Sewa</span>
+      </a>
+    </li>
     
     <!-- Divider -->
     <hr class="sidebar-divider">

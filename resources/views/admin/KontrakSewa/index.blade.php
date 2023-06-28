@@ -34,10 +34,8 @@
 
           <!-- PTipe Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800 mr-auto">Data Pengajuan Pembelian Kendaraan</h1>
+            <h1 class="h3 mb-0 text-gray-800 mr-auto">Kontrak Sewa</h1>
             <div>
-
-              <a href="{{ route('pengajuanpembelian.pdf') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
               <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
               </a>
@@ -45,83 +43,70 @@
           </div>
           
           
-          
-
-          <!-- Content Row -->
-
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Data Pengajuan Pembelian</h6>
-              </div>
-              <div class="card-body">
-                  <div class="table-responsive">
-                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                          <thead>
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Data Kontrak Sewa</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                              <th>No</th>
+                              <th>ID Kontrak Sewa</th>
+                              <th>Tanggal Sewa</th>
+                              <th>Tanggal Awal</th>
+                              <th>Tanggal Akhir</th>
+                              <th>Biaya Sewa</th>
+                              <th>No Polisi</th>
+                              <th>ID Penyewa</th>
+                              <th>ID Pemakai</th>
+                              <th>Status</th>
+                              <th>Approval</th>
+                              <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>No</th>
+                                <th>ID Kontrak Sewa</th>
+                                <th>Tanggal Sewa</th>
+                                <th>Tanggal Awal</th>
+                                <th>Tanggal Akhir</th>
+                                <th>Biaya Sewa</th>
+                                <th>No Polisi</th>
+                                <th>ID Penyewa</th>
+                                <th>ID Pemakai</th>
+                                <th>Status</th>
+                                <th>Approval</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                          @foreach ($kontrak_sewas as $kontrak_sewa)
                               <tr>
-                                  <th>No</th>
-                                  <th>ID Pengajuan</th>
-                                  <th>SPPK</th>
-                                  <th>Dealer</th>
-                                  <th>Merk</th>
-                                  <th>Tipe</th>
-                                  <th>Tahun</th>
-                                  <th>Warna</th>
-                                  <th>Deskripsi</th>
-                                  <th>Harga</th>
-                                  <th>BBN</th>
-                                  <th>OTR</th>
-                                  <th>Karoseri</th>
-                                  <th>Total</th>
-                                  <th>Approval</th>
+                                  <td>{{$loop->iteration}}</td>
+                                  <td>{{$kontrak_sewa->id_kontraksewa}}</td>
+                                  <td>{{$kontrak_sewa->tgl_sewa}}</td>
+                                  <td>{{$kontrak_sewa->tgl_awal}}</td>
+                                  <td>{{$kontrak_sewa->tgl_akhir}}</td>
+                                  <td>{{$kontrak_sewa->biaya_sewa}}</td>
+                                  <td>{{$kontrak_sewa->no_polisi}}</td>
+                                  <td>{{$kontrak_sewa->id_penyewa}}</td>
+                                  <td>{{$kontrak_sewa->id_pemakai}}</td>
+                                  <td>{{$kontrak_sewa->status}}</td>
+                                  <td>{{$kontrak_sewa->approval}}</td>
+                                  <td>{{$kontrak_sewa->keterangan}}</td>
                               </tr>
-                          </thead>
-                          <tfoot>
-                              <tr>
-                                  <th>No</th>
-                                  <th>ID Pengajuan</th>
-                                  <th>SPPK</th>
-                                  <th>Dealer</th>
-                                  <th>Merk</th>
-                                  <th>Tipe</th>
-                                  <th>Tahun</th>
-                                  <th>Warna</th>
-                                  <th>Deskripsi</th>
-                                  <th>Harga</th>
-                                  <th>BBN</th>
-                                  <th>OTR</th>
-                                  <th>Karoseri</th>
-                                  <th>Total</th>
-                                  <th>Approval</th>
-                              </tr>
-                          </tfoot>
-                          <tbody>
-                            @foreach ($pengajuan_pembelians as $pengajuan_pembelian)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $pengajuan_pembelian->id_pengajuanpembelian }}</td>
-                                    <td>{{ $pengajuan_pembelian->id_sppk }}</td>
-                                    <td>{{ $pengajuan_pembelian->dealer }}</td>
-                                    <td>{{ $pengajuan_pembelian->merk }}</td>
-                                    <td>{{ $pengajuan_pembelian->tipe }}</td>
-                                    <td>{{ $pengajuan_pembelian->tahun }}</td>
-                                    <td>{{ $pengajuan_pembelian->warna }}</td>
-                                    <td>{{ $pengajuan_pembelian->deskripsi }}</td>
-                                    <td>Rp.{{ $pengajuan_pembelian->harga }}</td>
-                                    <td>{{ $pengajuan_pembelian->bbn }}</td>
-                                    <td>{{ $pengajuan_pembelian->otr }}</td>
-                                    <td>{{ $pengajuan_pembelian->karoseri }}</td>
-                                    <td>{{ $pengajuan_pembelian->total }}</td>
-                                    <td>{{ $pengajuan_pembelian->approval }}</td>
-                                </tr>
-                            @endforeach
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </div>
+                          @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-<!-- Content Row -->
+          <!-- Content Row -->
 <div class="row">
   <div class="col-lg-6 mb-4">
       <div class="card shadow">
@@ -196,7 +181,7 @@
   <div class="col-lg-6 mb-4">
       <div class="card shadow mb-4">
           <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Daftar Antrian SPPK</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Daftar Antrian Serah Terima Dealer to Wahana</h6>
           </div>
           <div class="card-body">
               <div class="table-responsive">
@@ -221,7 +206,7 @@
                               <td>{{$loop->iteration}}</td>
                               <td>{{$pengajuan_sewa->id_sppk}}</td>
                               <td>
-                                <a href="{{route('pengajuanpembelian.create', ['id_sppk' => $pengajuan_sewa->id_sppk])}}" class="btn btn-success btn-icon-split btn-sm">
+                                <a href="{{route('kontraksewa.create', ['id_sppk' => $pengajuan_sewa->id_sppk])}}" class="btn btn-success btn-icon-split btn-sm">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-credit-card"></i>
                                     </span>
@@ -304,10 +289,10 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                      @foreach ($revisi_pengajuan_pembelians as $revisi_pengajuan_pembelian)
+                      @foreach ($revisi_kontrak_sewas as $revisi_kontrak_sewa)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$revisi_pengajuan_pembelian->id_pengajuanpembelian}}</td>
+                            <td>{{$revisi_kontrak_sewa->id_kontraksewa}}</td>
                             <td>
                               <a href="#" class="btn btn-primary btn-icon-split btn-sm">
                                   <span class="icon text-white-50">
@@ -351,11 +336,8 @@
   @include('layout.footer')
   <script>
   $(document).ready( function () {
-    $('#dataTable, #harga').DataTable();
-  }
-  function formatNumber(number) {
-            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        } );
+    $('#dataTable').DataTable();
+  } );
   </script>
 </body>
 

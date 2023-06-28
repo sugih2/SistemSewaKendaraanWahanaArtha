@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PengajuanPembelian;
+use App\PengajuanSewa;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -16,7 +17,9 @@ class PengajuanPembelianController extends Controller
     public function index()
     {
         $pengajuan_pembelians = PengajuanPembelian::all();
-        return view ('admin.pengajuanpembelian.index', compact('pengajuan_pembelians'));
+        $pengajuan_sewas = PengajuanSewa::where('approval', 'Approved')->where('status', 'Approved')->get();
+        $revisi_pengajuan_pembelians = PengajuanPembelian::where('approval', 'Reject')->get();
+        return view ('admin.pengajuanpembelian.index', compact('pengajuan_pembelians', 'pengajuan_sewas', 'revisi_pengajuan_pembelians'));
     }
 
     public function approval()
@@ -44,9 +47,11 @@ class PengajuanPembelianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.pengajuanpembelian.create');
+        $id_sppk = $request->input('id_sppk');
+        $pengajuan_sewas = PengajuanSewa::findOrFail($id_sppk);
+        return view('admin.pengajuanpembelian.create', compact('pengajuan_sewas'));
     }
 
     /**
@@ -58,6 +63,10 @@ class PengajuanPembelianController extends Controller
     public function store(Request $request)
     {
         PengajuanPembelian::create($request->all());
+        $id_sppk = $request->input('id_sppk');
+        $id_sppk = PengajuanSewa::findOrFail($id_sppk);
+        $id_sppk->status = 'Proses Pembelian';
+        $id_sppk->save();
 
         // Tambahkan pesan berhasil ke session
         session()->flash('success', 'Pengajuan Pembelian Kendaraan berhasil di Tambahkan, Menunggu Approval dari Pengurus');
