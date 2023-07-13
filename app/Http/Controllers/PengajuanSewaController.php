@@ -19,15 +19,17 @@ class PengajuanSewaController extends Controller
         $pengajuan_sewas = PengajuanSewa::all();
         $proses_pengajuan_sewas = PengajuanSewa::where('approval', 'Proses Approval')->get();
         $revisi_pengajuan_sewas = PengajuanSewa::where('approval', 'Reject')->get();
-        if (Auth::user()->role == 'Admin') {
-            return view('admin.SPPK.index', compact('pengajuan_sewas', 'revisi_pengajuan_sewas'));
-        } else if (Auth::user()->role == 'Pengurus') {
-            return view('pengurus.SPPK.index', compact('pengajuan_sewas', 'proses_pengajuan_sewas'));
-        } else if (Auth::user()->role == 'Akuntan') {
-            return view('akuntan.SPPK.index', compact('pengajuan_sewas'));
-        } else {
-            return view('auth.login');
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->role == 'Admin') {
+                return view('admin.SPPK.index', compact('pengajuan_sewas', 'revisi_pengajuan_sewas'));
+            } else if ($user->role == 'Pengurus') {
+                return view('pengurus.SPPK.index', compact('pengajuan_sewas', 'proses_pengajuan_sewas'));
+            } else if ($user->role == 'Akuntan') {
+                return view('akuntan.SPPK.index', compact('pengajuan_sewas'));
+            }
         }
+        return view('auth.login');
     }
 
     /**

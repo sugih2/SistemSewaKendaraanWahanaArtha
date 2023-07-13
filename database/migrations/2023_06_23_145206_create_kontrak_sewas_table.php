@@ -21,8 +21,10 @@ class CreateKontrakSewasTable extends Migration
             $table->string('biaya_sewa');
             $table->string('no_polisi');
             $table->foreign('no_polisi')->references('no_polisi')->on('kendaraans')->onDelete('cascade');
-            $table->string('id_penyewa');
-            $table->string('id_pemakai');
+            $table->unsignedBigInteger('id_penyewa');
+            $table->foreign('id_penyewa')->references('id_penyewa')->on('penyewas')->onDelete('cascade');
+            $table->unsignedBigInteger('id_pemakai');
+            $table->foreign('id_pemakai')->references('id_pemakai')->on('pemakais')->onDelete('cascade');
             $table->string('status');
             $table->string('approval');
             $table->unsignedBigInteger('id_sppk');

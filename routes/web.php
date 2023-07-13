@@ -68,6 +68,11 @@ Route::prefix('sppk')->group(function () {
     Route::put('/{id_sppk}/reject', 'PengajuanSewaController@reject')->name('sppk.reject');
 });
 
+Route::prefix('stwahanatocabang')->group(function () {
+    Route::get('/create', 'STWahanatoCabangController@create')->name('stwahanatocabang.create');
+});
+
+Route::resource('/stwahanatocabang', 'STWahanatoCabangController');
 Route::resource('/sppk', 'PengajuanSewaController');
 Route::resource('/kontraksewa', 'KontrakSewaController');
 Route::resource('/pengajuanpembelian', 'PengajuanPembelianController');

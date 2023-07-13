@@ -53,9 +53,6 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Kelola Kendaraan</h6>
           <a class="collapse-item" href="{{ url('/kendaraan') }}">Data Kendaraan</a>
-          <a class="collapse-item" href="{{ route('kendaraan.create') }}">Tambah Kendaraan</a>
-          <a class="collapse-item" href="#">Jual Kendaraan</a>
-          <a class="collapse-item" href="{{ url('/kendaraan/revisi') }}">Revisi Data Kendaraan</a>
         </div>
       </div>
     </li>
@@ -108,6 +105,12 @@
       <a class="nav-link" href="{{ url('/kontraksewa') }}">
         <i class="fas fa-fw fa-address-book"></i>
         <span>Kontrak Sewa</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('/stwahanatocabang') }}">
+        <i class="fas fa-fw fa-newspaper"></i>
+        <span>Serah Terima Kendaraan</span>
       </a>
     </li>
     <!-- Divider -->
