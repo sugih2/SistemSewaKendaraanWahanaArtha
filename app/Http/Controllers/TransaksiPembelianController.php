@@ -45,11 +45,9 @@ class TransaksiPembelianController extends Controller
      */
     public function create(Request $request)
     {
+        
         $id_pengajuanpembelian = $request->input('id_pengajuanpembelian');
         $pengajuan_pembelian = PengajuanPembelian::findOrFail($id_pengajuanpembelian);
-        $pengajuan_pembelian->status_transaksi = 'Proses Bayar';
-        $pengajuan_pembelian->save();
-
         // ...
 
         return view('admin.transaksipembelian.create', compact('pengajuan_pembelian'));
@@ -63,6 +61,10 @@ class TransaksiPembelianController extends Controller
      */
     public function store(Request $request)
     {
+        $id_pengajuanpembelian = $request->input('id_pengajuanpembelian');
+        $pengajuan_pembelian = PengajuanPembelian::findOrFail($id_pengajuanpembelian);
+        $pengajuan_pembelian->status_transaksi = 'Proses Bayar';
+        $pengajuan_pembelian->save();
         TransaksiPembelian::create($request->all());
 
         // Tambahkan pesan berhasil ke session

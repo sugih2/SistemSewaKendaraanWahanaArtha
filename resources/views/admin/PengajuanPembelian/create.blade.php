@@ -70,7 +70,6 @@
         </div>
             <div class="col-sm-4">
               <label for="">Biaya Sewa</label>
-
               <input type="text" class="form-control" name="" value="{{ $pengajuan_sewas->biaya_sewa }}" readonly>
             </div>
             <div class="col-sm-4">
