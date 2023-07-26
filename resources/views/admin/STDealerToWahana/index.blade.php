@@ -274,26 +274,27 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>ID Transaksi</th>
-                            <th>Keterangan</th>
+                            <th>ID Serah Terima</th>
+                            <th>No Polisi</th>
                             <th colspan="2">Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>No</th>
-                            <th>ID Transaksi</th>
-                            <th>Keterangan</th>
+                            <th>ID Serah Terima</th>
+                            <th>No Polisi</th>
                             <th colspan="2">Aksi</th>
                         </tr>
                     </tfoot>
                     <tbody>
+                      @foreach ($revisi_stdealertowahanas as $revisi_stdealertowahana)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $revisi_stdealertowahana->id_stdealertowahana }}</td>
+                            <td>{{ $revisi_stdealertowahana->no_polisi }}</td>
                             <td>
-                              <a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                              <a href="{{route('stdealertowahana.edit', ['no_polisi' => $revisi_stdealertowahana->no_polisi])}}" class="btn btn-primary btn-icon-split btn-sm">
                                   <span class="icon text-white-50">
                                       <i class="fas fa-edit"></i>
                                   </span>
@@ -310,6 +311,7 @@
                                 </button>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

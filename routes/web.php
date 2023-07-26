@@ -55,21 +55,30 @@ Route::prefix('transaksipembelian')->group(function () {
 
 Route::prefix('stdealertowahana')->group(function () {
     Route::get('/create/{id_transaksipembelian}', 'STDealertoWahanaController@create')->name('stdealertowahana.create');
-    Route::get('/approved/{no_polisi}', 'STDealertoWahanaController@approved')->name('stdealertowahana.approved');
+    Route::put('/approved/{no_polisi}', 'STDealertoWahanaController@approved')->name('stdealertowahana.approved');
+    Route::put('/{no_polisi}/reject', 'STDealertoWahanaController@reject')->name('stdealertowahana.reject');
+    Route::get('/{no_polisi}/edit', 'STDealertoWahanaController@edit')->name('stdealertowahana.edit');
 });
 
 Route::prefix('kontraksewa')->group(function () {
     Route::get('/create', 'KontrakSewaController@create')->name('kontraksewa.create');
+    Route::put('/approved/{id_kontraksewa}', 'KontrakSewaController@approved')->name('kontraksewa.approved');
+    Route::put('/{id_kontraksewa}/reject','KontrakSewaController@reject')->name('kontraksewa.reject');
+    Route::get('/{id_kontraksewa}/edit', 'KontrakSewaController@edit')->name('kontraksewa.edit');
 });
 
 Route::prefix('sppk')->group(function () {
     Route::get('/create', 'PengajuanSewaController@create')->name('sppk.create');
     Route::put('/approved/{id_sppk}', 'PengajuanSewaController@approved')->name('sppk.approved');
     Route::put('/{id_sppk}/reject', 'PengajuanSewaController@reject')->name('sppk.reject');
+    Route::get('/{id_sppk}/edit', 'PengajuanSewaController@edit')->name('sppk.edit');
 });
 
 Route::prefix('stwahanatocabang')->group(function () {
     Route::get('/create', 'STWahanatoCabangController@create')->name('stwahanatocabang.create');
+    Route::put('/approved/{id_stwahanatocabang}', 'STWahanatoCabangController@approved')->name('stwahanatocabang.approved');
+    Route::put('/{id_stwahanatocabang}/reject', 'STWahanatoCabangController@Reject')->name('stwahanatocabang.reject');
+    Route::get('/{id_stwahanatocabang}/edit', 'STWahanatoCabangController@edit')->name('stwahanatocabang.edit');
 });
 
 Route::resource('/stwahanatocabang', 'STWahanatoCabangController');

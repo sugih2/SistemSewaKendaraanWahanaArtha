@@ -15,6 +15,8 @@ class CreatePemakaisTable extends Migration
     {
         Schema::create('pemakais', function (Blueprint $table) {
             $table->bigIncrements('id_pemakai');
+            $table->unsignedBigInteger('id_penyewa');
+            $table->foreign('id_penyewa')->references('id_penyewa')->on('penyewas')->onDelete('cascade');
             $table->string('nama');
             $table->string('jabatan');
             $table->string('no_hp');

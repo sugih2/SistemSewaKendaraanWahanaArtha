@@ -180,7 +180,7 @@
                             <th>No</th>
                             <th>ID Serah Terima</th>
                             <th>No Polisi</th>
-                            <th colspan="2">Aksi</th>
+                            <th colspan="3">Aksi</th>
                           </tr>
                       </thead>
                       <tfoot>
@@ -188,7 +188,7 @@
                               <th>No</th>
                               <th>ID Serah Terima</th>
                               <th>No Polisi</th>
-                              <th colspan="2">Aksi</th>
+                              <th colspan="3">Aksi</th>
                           </tr>
                       </tfoot>
                       <tbody>
@@ -198,66 +198,280 @@
                               <td>{{$proses_stdealertowahana->id_stdealertowahana}}</td>
                               <td>{{$proses_stdealertowahana->no_polisi}}</td>
                               <td>
-                                <a href="{{route('stdealertowahana.approved', ['no_polisi' => $proses_stdealertowahana->no_polisi])}}" class="btn btn-success btn-icon-split btn-sm">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-credit-card"></i>
-                                    </span>
-                                    <span class="text">Approve</span>
-                                </a>
-                                
+                                <button class="btn btn-warning btn-icon-split btn-sm" data-toggle="modal" data-target="#rejectModal{{ $proses_stdealertowahana->no_polisi }}">
+                                  <span class="icon text-white-50">
+                                      <i class="fas fa-flag"></i>
+                                  </span>
+                                  <span class="text">Reject</span>
+                                </button>
                               </td>
                               <td>
-                                  <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal">
-                                      <span class="icon text-white-50">
-                                          <i class="fas fa-info-circle"></i>
-                                      </span>
-                                      <span class="text">Detail</span>
-                                  </button>
+                                <button class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#approveModal{{ $proses_stdealertowahana->no_polisi }}">
+                                  <span class="icon text-white-50">
+                                      <i class="fas fa-thumbs-up"></i>
+                                  </span>
+                                  <span class="text">Setuju</span>
+                              </button>
+                              </td>
+                              <td>
+                                <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal{{ $proses_stdealertowahana->no_polisi }}">
+                                  <span class="icon text-white-50">
+                                      <i class="fas fa-info-circle"></i>
+                                  </span>
+                                  <span class="text">Detail</span>
+                                </button>
                               </td>
                           </tr>
                         @endforeach
                       </tbody>
                   </table>
-                  {{-- @foreach ($transaksi_pembelians as $transaksi_pembelian)
-                    <div class="modal fade" id="detailModal{{ $transaksi_pembelian->id_transaksipembelian }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="detailModalLabel">Detail Transaksi Pembelian</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
+                  @foreach ($proses_stdealertowahanas as $proses_stdealertowahana)
+                        <!-- Modal Detail pengajuan_pembelian -->
+                        <div class="modal fade" id="detailModal{{ $proses_stdealertowahana->no_polisi }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                              <h4 class="modal-title" id="detailModalLabel">Detail Serah Terima Kendaraan Dealer to Wahana</h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                              </div>
+                              <div class="modal-body">
+                              <div class="row">
+                                  <table class="table">
+                                  <tbody>
+                                      <tr>
+                                      <td><b>ID Serah Terima</b></td>
+                                      <td colspan="2"><b>{{ $proses_stdealertowahana->id_stdealertowahana }}</b></td>
+                                      <td><b>No Polisi</b></td>
+                                      <td colspan="2"><b>{{ $proses_stdealertowahana->no_polisi }}</b></td>
+                                      </tr>
+                                      <tr>
+                                      <td colspan="6"><h5><b>Data Kendaraan</b></h5></td>
+                                      </tr>
+                                      @foreach ($kendaraans as $kendaraan)
+                                      @if ($kendaraan->no_polisi == $proses_stdealertowahana->no_polisi)
+                                        <tr>
+                                            <td><b>Kategori Kendaraan</b></td>
+                                            <td colspan="5">{{ $kendaraan->kategori }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Merk</b></td>
+                                            <td colspan="2">{{ $kendaraan->merk }}</td>
+                                            <td><b>No Polisi</b></td>
+                                            <td colspan="2">{{ $kendaraan->no_polisi }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Tipe</b></td>
+                                            <td colspan="2">{{ $kendaraan->tipe }}</td>
+                                            <td><b>No Rangka</b></td>
+                                            <td colspan="2">{{ $kendaraan->no_rangka }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Tahun</b></td>
+                                            <td colspan="2">{{ $kendaraan->tahun }}</td>
+                                            <td><b>No Mesin</b></td>
+                                            <td colspan="2">{{ $kendaraan->no_mesin }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Warna</b></td>
+                                            <td colspan="2">{{ $kendaraan->warna }}</td>
+                                            <td><b>Lokasi</b></td>
+                                            <td colspan="2">{{ $kendaraan->lokasi }}</td>
+                                        </tr>
+                                      @endif
+                                      @endforeach
+                                      <tr>
+                                      <td colspan="6"><h5><b>Data Surat - Surat Kendaraan</b></h5></td>
+                                      </tr>
+                                      @foreach ($stnks as $stnk)
+                                      @if ($stnk->no_polisi == $proses_stdealertowahana->no_polisi)
+                                      <tr>
+                                      <td><b>Tanggal Jatuh Tempo STNK</b></td>
+                                      <td>{{ $stnk->tanggal_jt_stnk }}</td>
+                                      <td><b>Tanggal Bayar STNK</b></td>
+                                      <td>{{ $stnk->tanggal_bayar_stnk }}</td>
+                                      <td><b>Biaya STNK</b></td>
+                                      <td>{{ $stnk->biaya_stnk }}</td>
+                                      </tr>
+                                      @endif
+                                      @endforeach
+                                      @foreach ($kirs as $kir)
+                                      @if ($kir->no_polisi == $proses_stdealertowahana->no_polisi)
+                                      <tr>
+                                      <td><b>Tanggal Jatuh Tempo KIR</b></td>
+                                      <td>{{ $kir->tanggal_jt_kir }}</td>
+                                      <td><b>Tanggal Bayar KIR</b></td>
+                                      <td>{{ $kir->tanggal_bayar_kir }}</td>
+                                      <td><b>Biaya KIR</b></td>
+                                      <td>{{ $kir->biaya_kir }}</td>
+                                      </tr>
+                                      @endif
+                                      @endforeach
+                                      <tr>
+                                      <td colspan="6"><h5><b>Data Berita Serah Terima Kendaraan Dealer to Wahana</b></h5></td>
+                                      </tr>
+                                      <tr>
+                                      <td><b>Tanggal Serah Terima</b></td>
+                                      <td colspan="5">{{ $proses_stdealertowahana->tgl_st }}</td>
+                                      </tr>
+                                      <tr>
+                                      <td><b>Nama yang menyerahkan</b></td>
+                                      <td colspan="2">{{ $proses_stdealertowahana->nama_penyerah }}</td>
+                                      <td><b>Nama yang menerima</b></td>
+                                      <td colspan="2">{{ $proses_stdealertowahana->nama_penerima }}</td>
+                                      </tr>
+                                  </tbody>
+                                  </table>
+                              </div>
+                              </div>
+                              <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                              </div>
                           </div>
-                          <div class="modal-body">
-                            <div class="row">
-                              <table class="table">
-                                <tbody>
-                                  <tr>
-                                    <td colspan="4"><h5><b>Data Transaksi Pembelian</b></h5></td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Id Transaksi</b></td>
-                                    <td><b>{{ $transaksi_pembelian->id_transaksipembelian }}</b></td>
-                                    <td><b>Tanggal Transaksi</b></td>
-                                    <td>{{ $transaksi_pembelian->tanggal_transaksi_p }}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Pembayaran Transaksi</b></td>
-                                    <td colspan="3">{{$transaksi_pembelian->pembayaran_transaksi_p}}</td>
-                                  </tr>
-                                </tbody>
-                                
-                              </table>
-                              
-                            </div>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                           </div>
                         </div>
-                      </div>
+
+                    <!-- Modal Approve pengajuan_pembelian -->
+                    <div class="modal fade" id="approveModal{{ $proses_stdealertowahana->no_polisi }}" tabindex="-1" role="dialog" aria-labelledby="approveModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="approveModalLabel">Approve Serah Terima Kendaraan Dealer to Wahana</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{route('stdealertowahana.approved', ['no_polisi' => $proses_stdealertowahana->no_polisi])}}" method="POST">
+                                  @csrf
+                                  @method('PUT')
+                                  <div class="modal-footer">
+                                      <button type="submit" class="btn btn-success"><span class="icon text-white-50">
+                                      <i class="fas fa-check"></i>
+                                      </span> Setuju</button>
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </div>
+                              </form>
+                            </div>
+                        </div>
                     </div>
-                    @endforeach --}}
+                    <!-- Modal Reject pengajuan_pembelian -->
+                    <div class="modal fade" id="rejectModal{{ $proses_stdealertowahana->no_polisi }}" tabindex="-1" role="dialog" aria-labelledby="rejectModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="rejectModalLabel">Reject Serah Terima Kendaraan Dealer to Wahana</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{route('stdealertowahana.reject', ['no_polisi' => $proses_stdealertowahana->no_polisi])}}" method="POST">
+                                  @csrf
+                                  @method('PUT')
+                                  <div class="modal-body">
+                                    <div class="row">
+                                      <table class="table">
+                                      <tbody>
+                                        <tr>
+                                            <td><b>ID Serah Terima</b></td>
+                                            <td colspan="2"><b>{{ $proses_stdealertowahana->id_stdealertowahana }}</b></td>
+                                            <td><b>No Polisi</b></td>
+                                            <td colspan="2"><b>{{ $proses_stdealertowahana->no_polisi }}</b></td>
+                                            </tr>
+                                            <tr>
+                                            <td colspan="6"><h5><b>Data Kendaraan</b></h5></td>
+                                            </tr>
+                                            @foreach ($kendaraans as $kendaraan)
+                                            @if ($kendaraan->no_polisi == $proses_stdealertowahana->no_polisi)
+                                              <tr>
+                                                  <td><b>Kategori Kendaraan</b></td>
+                                                  <td colspan="5">{{ $kendaraan->kategori }}</td>
+                                              </tr>
+                                              <tr>
+                                                  <td><b>Merk</b></td>
+                                                  <td colspan="2">{{ $kendaraan->merk }}</td>
+                                                  <td><b>No Polisi</b></td>
+                                                  <td colspan="2">{{ $kendaraan->no_polisi }}</td>
+                                              </tr>
+                                              <tr>
+                                                  <td><b>Tipe</b></td>
+                                                  <td colspan="2">{{ $kendaraan->tipe }}</td>
+                                                  <td><b>No Rangka</b></td>
+                                                  <td colspan="2">{{ $kendaraan->no_rangka }}</td>
+                                              </tr>
+                                              <tr>
+                                                  <td><b>Tahun</b></td>
+                                                  <td colspan="2">{{ $kendaraan->tahun }}</td>
+                                                  <td><b>No Mesin</b></td>
+                                                  <td colspan="2">{{ $kendaraan->no_mesin }}</td>
+                                              </tr>
+                                              <tr>
+                                                  <td><b>Warna</b></td>
+                                                  <td colspan="2">{{ $kendaraan->warna }}</td>
+                                                  <td><b>Lokasi</b></td>
+                                                  <td colspan="2">{{ $kendaraan->lokasi }}</td>
+                                              </tr>
+                                            @endif
+                                            @endforeach
+                                            <tr>
+                                            <td colspan="6"><h5><b>Data Surat - Surat Kendaraan</b></h5></td>
+                                            </tr>
+                                            @foreach ($stnks as $stnk)
+                                            @if ($stnk->no_polisi == $proses_stdealertowahana->no_polisi)
+                                            <tr>
+                                            <td><b>Tanggal Jatuh Tempo STNK</b></td>
+                                            <td>{{ $stnk->tanggal_jt_stnk }}</td>
+                                            <td><b>Tanggal Bayar STNK</b></td>
+                                            <td>{{ $stnk->tanggal_bayar_stnk }}</td>
+                                            <td><b>Biaya STNK</b></td>
+                                            <td>{{ $stnk->biaya_stnk }}</td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            @foreach ($kirs as $kir)
+                                            @if ($kir->no_polisi == $proses_stdealertowahana->no_polisi)
+                                            <tr>
+                                            <td><b>Tanggal Jatuh Tempo KIR</b></td>
+                                            <td>{{ $kir->tanggal_jt_kir }}</td>
+                                            <td><b>Tanggal Bayar KIR</b></td>
+                                            <td>{{ $kir->tanggal_bayar_kir }}</td>
+                                            <td><b>Biaya KIR</b></td>
+                                            <td>{{ $kir->biaya_kir }}</td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                            <tr>
+                                            <td colspan="6"><h5><b>Data Berita Serah Terima Kendaraan Dealer to Wahana</b></h5></td>
+                                            </tr>
+                                            <tr>
+                                            <td><b>Tanggal Serah Terima</b></td>
+                                            <td colspan="5">{{ $proses_stdealertowahana->tgl_st }}</td>
+                                            </tr>
+                                            <tr>
+                                            <td><b>Nama yang menyerahkan</b></td>
+                                            <td colspan="2">{{ $proses_stdealertowahana->nama_penyerah }}</td>
+                                            <td><b>Nama yang menerima</b></td>
+                                            <td colspan="2">{{ $proses_stdealertowahana->nama_penerima }}</td>
+                                            </tr>
+                                          <tr>
+                                          <td><b>Keterangan</b></td>
+                                          <td colspan="5"><input type="text" class="form-control" name="keterangan" id="keterangan"></td>
+                                          </tr>
+                                      </tbody>
+                                      </table>
+                                  </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="submit" class="btn btn-danger"><span class="icon text-white-50">
+                                      <i class="fas fa-check"></i>
+                                      </span> Reject</button>
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </div>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
               </div>
           </div>
       </div>

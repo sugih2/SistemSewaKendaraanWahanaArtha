@@ -48,29 +48,29 @@
         <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label for="">Nama PT</label>
-              <input type="text" class="form-control" name="id_sppk" value="{{$pengajuan_pembelian->id_sppk}}">
+              <input type="text" class="form-control" name="nama_pt" readonly>
             </div>
             <div class="col-sm-4">
               <label for="">Cabang</label>
-              <input type="text" class="form-control" name="">
+              <input type="text" class="form-control" name="nama_cabang" readonly>
             </div>
             <div class="col-sm-4">
               <label for="">Tanggal</label>
-              <input type="date" class="form-control" name="">
+              <input type="date" class="form-control" name="" readonly>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label for="">JW Sewa</label>
-              <input type="text" class="form-control" name="">
+              <input type="text" class="form-control" name="" readonly>
             </div>
             <div class="col-sm-4">
               <label for="">Biaya Sewa</label>
-              <input type="text" class="form-control" name="">
+              <input type="text" class="form-control" name="" readonly>
             </div>
             <div class="col-sm-4">
               <label for="">% Biaya Sewa</label>
-              <input type="text" class="form-control" name="">
+              <input type="text" class="form-control" name="" readonly>
             </div>
         </div>
         <h4 class="h4 mb-10 text-gray-800">2. Surat Penawaran Harga Kendaraan</h4>
@@ -163,7 +163,12 @@
               <input type="text" class="form-control" name="total" value="{{$pengajuan_pembelian->total}}">
             </div>
         </div>
-        <input type="text" class="form-control" name="approval" value="Proses Approval" hidden>
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <label for="">Keterangan</label>
+            <input type="text" class="form-control" name="keterangan" value="{{$pengajuan_pembelian->keterangan}}" readonly>
+          </div>
+      </div>
         <div class="form-group row col-sm-6 mb-3 mb-sm-0">
             <input type="submit" class="btn btn-lg btn-primary shadow-sm" value="Submit">
         </div>
@@ -186,7 +191,38 @@
 
 
   @include('layout.footer')
+  <script>
+    $(document).ready(function() {
+      $('#biaya_sewa, #harga_p_dealer, #harga_p_karoseri, #harga, #bbn, #karoseri, #otr, #total').on('input', function() {
+            var value = $(this).val();
+            if (value !== '') {
+                value = value.replace(/[^\d]/g, ''); // Menghapus semua karakter selain angka
+                value = 'Rp ' + formatNumber(value);
+            }
+            $(this).val(value);
+            hitungTotal(); // Memanggil fungsi hitungTotal() setiap kali nilai input berubah
+        });
 
+        function hitungTotal() {
+        var harga = parseFloat(document.getElementById('harga').value.replace(/[^\d]/g, "")) || 0;
+        var bbn = parseFloat(document.getElementById('bbn').value.replace(/[^\d]/g, "")) || 0;
+        var otr = parseFloat(document.getElementById('otr').value.replace(/[^\d]/g, "")) || 0;
+        var karoseri = parseFloat(document.getElementById('karoseri').value.replace(/[^\d]/g, "")) || 0;
+
+        var total = harga + bbn + otr + karoseri;
+        var formattedTotal = formatNumber(total);
+        var totalInput = document.getElementById('total');
+        totalInput.value = 'Rp ' + formattedTotal;
+        totalInput.setAttribute( 'placeholder','Rp ' + formattedTotal);
+    }
+
+        // Fungsi untuk menambahkan pemisah ribuan
+        function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+    });
+    
+  </script>
 
 </body>
 

@@ -198,13 +198,13 @@
                                     <tr>
                                     <th>No</th>
                                     <th>ID SPPK</th>
-                                    <th colspan="3">Aksi</th>
+                                    <th colspan="2">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>ID Serah Terima</th>
+                                        <th>ID SPPK</th>
                                         <th colspan="2">Aksi</th>
                                     </tr>
                                 </tfoot>

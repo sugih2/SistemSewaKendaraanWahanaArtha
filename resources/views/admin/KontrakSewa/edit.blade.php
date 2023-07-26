@@ -29,7 +29,7 @@
           </div>
 
           <!-- Content Row -->
-          <form method="post" action="{{ route('kontraksewa.store') }}" class="container-fluid">
+          <form method="post" action="{{ route('kontraksewa.update', $kontraksewa->id_kontraksewa) }}" class="container-fluid">
             @csrf
           <div class="row">
             @if ($errors->any())
@@ -46,7 +46,7 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">SURAT  PEMESANAN PENYEWAAN KENDARAAN</h6>
             </div>
-            <input type="text" name="id_sppk" value="{{ $pengajuan_sewas->id_sppk }}" hidden>
+            <input type="text" name="id_sppk" value="{{ $pengajuansewa->id_sppk }}" hidden>
             <div class="card-body">
                   <table class="table-bordered" width="100%" cellspacing="0">
               <tr>
@@ -55,15 +55,15 @@
               <tr>
                 <th>Nama PT</th>
                 <td>:</td>
-                <td>{{$pengajuan_sewas->nama_pt}}</td>
+                <td>{{$pengajuansewa->nama_pt}}</td>
                 <th>Nama Cabang</th>
                 <td>:</td>
-                <td>{{$pengajuan_sewas->nama_cabang}}</td>
+                <td>{{$pengajuansewa->nama_cabang}}</td>
               </tr>
               <tr>
                 <th>Alamat</th>
                 <td>:</td>
-                <td colspan="4">{{$pengajuan_sewas->alamat}}</td>
+                <td colspan="4">{{$pengajuansewa->alamat}}</td>
               </tr>
               <tr>
                 <th colspan="6">Data Kendaraan</th>
@@ -71,27 +71,27 @@
               <tr>
                 <th>Kategori</th>
                 <td>:</td>
-                <td colspan="4">{{$pengajuan_sewas->kategori}}</td>
+                <td colspan="4">{{$pengajuansewa->kategori}}</td>
               </tr>
               <tr>
                 <th>Merk</th>
                 <td>:</td>
-                <td colspan="4">{{$pengajuan_sewas->merk}}</td>
+                <td colspan="4">{{$pengajuansewa->merk}}</td>
               </tr>
               <tr>
                 <th>Tipe</th>
                 <td>:</td>
-                <td colspan="4">{{$pengajuan_sewas->tipe}}</td>
+                <td colspan="4">{{$pengajuansewa->tipe}}</td>
               </tr>
               <tr>
                 <th>Tahun</th>
                 <td>:</td>
-                <td colspan="4">{{$pengajuan_sewas->tahun}}</td>
+                <td colspan="4">{{$pengajuansewa->tahun}}</td>
               </tr>
               <tr>
                 <th>Warna</th>
                 <td>:</td>
-                <td colspan="4">{{$pengajuan_sewas->warna}}</td>
+                <td colspan="4">{{$pengajuansewa->warna}}</td>
               </tr>
               <tr>
                 <th colspan="6">Data Pemakai</th>
@@ -99,15 +99,15 @@
               <tr>
                 <th>Nama</th>
                 <td>:</td>
-                <td>{{$pengajuan_sewas->nama}}</td>
+                <td>{{$pengajuansewa->nama}}</td>
                 <th>Jabatan</th>
                 <td>:</td>
-                <td>{{$pengajuan_sewas->jabatan}}</td>
+                <td>{{$pengajuansewa->jabatan}}</td>
               </tr>
               <tr>
                 <th>No HP</th>
                 <td>:</td>
-                <td colspan="4">{{$pengajuan_sewas->no_hp}}</td>
+                <td colspan="4">{{$pengajuansewa->no_hp}}</td>
               </tr>
               <tr>
                 <th colspan="6">Data Sewa</th>
@@ -115,12 +115,12 @@
               <tr>
                 <th>Periode Sewa</th>
                 <td>:</td>
-                <td colspan="4">{{$pengajuan_sewas->tgl_awal}} - {{$pengajuan_sewas->tgl_akhir}}</td>
+                <td colspan="4">{{$pengajuansewa->tgl_awal}} s/d {{$pengajuansewa->tgl_akhir}}</td>
               </tr>
               <tr>
                 <th>Biaya Sewa</th>
                 <td>:</td>
-                <td colspan="4">{{$pengajuan_sewas->biaya_sewa}}</td>
+                <td colspan="4">{{$pengajuansewa->biaya_sewa}}</td>
               </tr>
             </table>
           </div>
@@ -132,31 +132,31 @@
       <div class="form-group row">
         <div class="col-sm-6 mb-3 mb-sm-3">
           <label for="">Nama PT</label>
-          <input type="text" class="form-control @error('nama_pt') is-invalid @enderror" name="nama_pt" value="{{ old('nama_pt') }}" required autocomplete="nama_pt" autofocus>
+          <input type="text" class="form-control @error('nama_pt') is-invalid @enderror" name="nama_pt" value="{{ $penyewa->nama_pt }}" required autocomplete="nama_pt" autofocus>
         </div>
         <div class="col-sm-6">
           <label for="">Nama Cabang</label>
-          <input type="text" class="form-control @error('nama_cabang') is-invalid @enderror" name="nama_cabang" value="{{ old('nama_cabang') }}" required autocomplete="nama_cabang" autofocus>
+          <input type="text" class="form-control @error('nama_cabang') is-invalid @enderror" name="nama_cabang" value="{{ $penyewa->nama_cabang }}" required autocomplete="nama_cabang" autofocus>
         </div>
       </div>
       <div class="form-group row-sm-6 mb-3 mb-sm-3">
           <label for="">Alamat</label>
-          <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ old('alamat') }}" required autocomplete="alamat" autofocus>
+          <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ $penyewa->alamat }}" required autocomplete="alamat" autofocus>
       </div>
       <h4 class="h4 mb-10 text-gray-800">2. Data Pemakai</h4>
       <div class="form-group row">
         <div class="col-sm-6 mb-3 mb-sm-3">
           <label for="">Nama</label>
-          <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus>
+          <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ $pemakai->nama }}" required autocomplete="nama" autofocus>
         </div>
         <div class="col-sm-6">
           <label for="">Jabatan</label>
-          <input type="text" class="form-control @error('jabatan') is-invalid @enderror" name="jabatan" value="{{ old('jabatan') }}" required autocomplete="jabatan" autofocus>
+          <input type="text" class="form-control @error('jabatan') is-invalid @enderror" name="jabatan" value="{{ $pemakai->jabatan }}" required autocomplete="jabatan" autofocus>
         </div>
       </div>
       <div class="form-group row-sm-6 mb-3 mb-sm-3">
           <label for="">No HP</label>
-          <input type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="no_hp" autofocus>
+          <input type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $pemakai->no_hp }}" required autocomplete="no_hp" autofocus>
       </div>
     </div>
   </div>
@@ -226,16 +226,16 @@
       <div class="form-group row">
         <div class="col-sm-12">
           <label for="">Tanggal Sewa</label>
-          <input type="date" class="form-control @error('tgl_sewa') is-invalid @enderror" name="tgl_sewa" id="tgl_sewa" value="{{ old('tgl_sewa') }}" required autocomplete="tgl_sewa" autofocus>
+          <input type="date" class="form-control @error('tgl_sewa') is-invalid @enderror" name="tgl_sewa" id="tgl_sewa" value="{{ $kontraksewa->tgl_sewa }}" required autocomplete="tgl_sewa" autofocus>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-sm-6 mb-3 mb-sm-0">
             <label for="periode_sewa">Periode Sewa</label>
             <div class="form-inline">
-                <input type="date" class="form-control col-sm-5 @error('tgl_awal') is-invalid @enderror" name="tgl_awal" id="tgl_awal" value="{{ old('tgl_awal') }}" required autocomplete="tgl_awal" autofocus>
+                <input type="date" class="form-control col-sm-5 @error('tgl_awal') is-invalid @enderror" name="tgl_awal" id="tgl_awal" value="{{ $kontraksewa->tgl_awal }}" required autocomplete="tgl_awal" autofocus>
                 <div class="mx-2"></div>
-                <input type="date" class="form-control col-sm-5 @error('tgl_akhir') is-invalid @enderror" name="tgl_akhir" id="tgl_akhir" value="{{ old('tgl_akhir') }}" required autocomplete="tgl_akhir" autofocus>
+                <input type="date" class="form-control col-sm-5 @error('tgl_akhir') is-invalid @enderror" name="tgl_akhir" id="tgl_akhir" value="{{ $kontraksewa->tgl_akhir }}" required autocomplete="tgl_akhir" autofocus>
             </div>                
         </div>
         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -246,7 +246,7 @@
     <div class="form-group row">
       <div class="col-sm-12">
         <label for="">Biaya Sewa</label>
-        <input type="text" class="form-control @error('biaya_sewa') is-invalid @enderror" name="biaya_sewa" id="biaya_sewa" value="{{ old('biaya_sewa') }}" required autocomplete="biaya_sewa" autofocus>
+        <input type="text" class="form-control @error('biaya_sewa') is-invalid @enderror" name="biaya_sewa" id="biaya_sewa" value="{{ $kontraksewa->biaya_sewa }}" required autocomplete="biaya_sewa" autofocus>
       </div>
     </div>
   

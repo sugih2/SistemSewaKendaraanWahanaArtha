@@ -36,8 +36,8 @@
       <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Kelola Pembelian</h6>
-          <a class="collapse-item" href="{{ url('/pengajuanpembelian/approval') }}">Pengajuan Pembelian</a>
-          <a class="collapse-item" href="{{ url('#') }}">Transaksi Pembelian</a>
+          <a class="collapse-item" href="{{ url('/pengajuanpembelian') }}">Pengajuan Pembelian</a>
+          <a class="collapse-item" href="{{ url('/transaksipembelian') }}">Transaksi Pembelian</a>
           <a class="collapse-item" href="{{ url('/stdealertowahana') }}">Serah Terima Kendaraan</a>
         </div>
       </div>
@@ -93,6 +93,24 @@
       </a>
     </li>
     
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('/stwahanatocabang') }}">
+        <i class="fas fa-fw fa-newspaper"></i>
+        <span>Serah Terima Kendaraan</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('/stwahanatocabang') }}">
+        <i class="fas fa-fw fa-unlink"></i>
+        <span>Penggantian Kendaraan</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('/stwahanatocabang') }}">
+        <i class="fas fa-fw fa-undo"></i>
+        <span>Pengembalian Kendaraan</span>
+      </a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
     

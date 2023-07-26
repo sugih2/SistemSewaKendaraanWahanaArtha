@@ -69,6 +69,12 @@
               <input type="text" class="form-control @error('bukti_transaksi_p') is-invalid @enderror" name="bukti_transaksi_p" value="{{ $transaksi_pembelian->bukti_transaksi_p }}" required autocomplete="bukti_transaksi_p" autofocus>
             </div>
         </div>
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <label for="">Keterangan</label>
+            <input type="text" class="form-control" placeholder="Rp " name="ketarangan" value="{{ $transaksi_pembelian->keterangan }}" readonly>
+          </div>
+      </div>
         <input type="text" class="form-control" name="approval" value="Proses Approval" hidden>
         <div class="form-group row col-sm-6 mb-3 mb-sm-0">
             <input type="submit" class="btn btn-lg btn-primary shadow-sm" value="Submit">

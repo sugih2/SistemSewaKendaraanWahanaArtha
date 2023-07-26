@@ -281,7 +281,7 @@
       </div>
       <div class="card shadow">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Revisi Kontrak Sewa</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Data Revisi Pengajuan Pembelian</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -289,7 +289,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>ID Kontrak Sewa</th>
+                            <th>ID Pengajuan Pembelian</th>
                             <th>Keterangan</th>
                             <th colspan="2">Aksi</th>
                         </tr>
@@ -297,7 +297,7 @@
                     <tfoot>
                         <tr>
                             <th>No</th>
-                            <th>ID Kontrak Sewa</th>
+                            <th>ID Pengajuan Pembelian</th>
                             <th>Keterangan</th>
                             <th colspan="2">Aksi</th>
                         </tr>
@@ -308,7 +308,7 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$revisi_pengajuan_pembelian->id_pengajuanpembelian}}</td>
                             <td>
-                              <a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                              <a href="{{route('pengajuanpembelian.edit', $revisi_pengajuan_pembelian->id_pengajuanpembelian)}}" class="btn btn-primary btn-icon-split btn-sm">
                                   <span class="icon text-white-50">
                                       <i class="fas fa-edit"></i>
                                   </span>
@@ -317,7 +317,7 @@
                               
                             </td>
                             <td>
-                                <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal">
+                                <button class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#detailModal{{ $revisi_pengajuan_pembelian->id_pengajuanpembelian }}">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-info-circle"></i>
                                     </span>
@@ -328,6 +328,105 @@
                       @endforeach
                     </tbody>
                 </table>
+                @foreach ($revisi_pengajuan_pembelians as $revisi_pengajuan_pembelian)
+                            
+                <div class="modal fade" id="detailModal{{ $revisi_pengajuan_pembelian->id_pengajuanpembelian }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title" id="detailModalLabel">Detail Pengajuan Pembelian</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <div class="row">
+                            <table class="table">
+                            <tbody>
+                              <tr>
+                                <td colspan="2"><b>ID Pengajuan Pembelian</b></td>
+                                <td colspan="4"><b>{{ $revisi_pengajuan_pembelian->id_pengajuanpembelian }}</b></td>
+                                </tr>
+                                <tr>
+                                <td colspan="6"><h5><b>Penawaran Harga Kendaraan</b></h5></td>
+                                </tr>
+                                <tr>
+                                <td><b>Dealer</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->nama_p_dealer }}</td>
+                                <td><b>Tanggal</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->tanggal_p_dealer }}</td>
+                                <td><b>Harga</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->harga_p_dealer }}</td>
+                                </tr>
+                                <tr>
+                                <td colspan="6"><h5><b>Penawaran Harga Karoseri</b></h5></td>
+                                </tr>
+                                <tr>
+                                <td><b>Nama PT</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->nama_pt_karoseri }}</td>
+                                <td><b>Tanggal</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->tanggal_p_karoseri }}</td>
+                                <td><b>Harga</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->harga_p_karoseri }}</td>
+                                </tr>
+                                <tr>
+                                <td colspan="6"><h5><b>Kendaraan Yang Diajukan</b></h5></td>
+                                </tr>
+                                <tr>
+                                <td><b>Dealer</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->dealer }}</td>
+                                <td><b>Dealer</b></td>
+                                <td></td>
+                                <td><b>Harga Off</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->harga }}</td>
+                                </tr>
+                                <tr>
+                                <td><b>Merk</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->merk }}</td>
+                                <td><b>Deskripsi</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->deskripsi }}</td>
+                                <td><b>BBN</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->bbn }}</td>
+                                </tr>
+                                <tr>
+                                <td><b>Tipe</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->tipe }}</td>
+                                <td></td>
+                                <td></td>
+                                <td><b>OTR</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->otr }}</td>
+                                </tr>
+                                <tr>
+                                <td><b>Tahun</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->tahun }}</td>
+                                <td></td>
+                                <td></td>
+                                <td><b>Karoseri</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->karoseri }}</td>
+                                </tr>
+                                <tr>
+                                <td><b>Warna</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->warna }}</td>
+                                <td></td>
+                                <td></td>
+                                <td><b>Total</b></td>
+                                <td>{{ $revisi_pengajuan_pembelian->total }}</td>
+                                </tr>
+                                <tr>
+                                  <td><b>Keterangan</b></td>
+                                  <td colspan="3">{{ $revisi_pengajuan_pembelian->keterangan }}</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
     </div>
