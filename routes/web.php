@@ -81,6 +81,14 @@ Route::prefix('stwahanatocabang')->group(function () {
     Route::get('/{id_stwahanatocabang}/edit', 'STWahanatoCabangController@edit')->name('stwahanatocabang.edit');
 });
 
+Route::prefix('pengembalian')->group(function () {
+    Route::get('/create', 'PengembalianController@create')->name('pengembalian.create');
+    Route::put('/approved/{id_pengembalian}', 'PengembalianController@approved')->name('pengembalian.approved');
+    Route::put('{id_pengembalian}/reject', 'PengembalianController@reject')->name('pengembalian.reject');
+    Route::get('{id_pengembalian}/edit', 'PengembalianController@edit')->name('pengembalian.edit');
+});
+
+Route::resource('/pengembalian', 'PengembalianController');
 Route::resource('/stwahanatocabang', 'STWahanatoCabangController');
 Route::resource('/sppk', 'PengajuanSewaController');
 Route::resource('/kontraksewa', 'KontrakSewaController');

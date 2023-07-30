@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use\App\Pengembalian;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class PengembalianController extends Controller
 {
@@ -13,7 +16,19 @@ class PengembalianController extends Controller
      */
     public function index()
     {
-        //
+        $pengembalians = Pengembalian::all();
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->role == 'Admin') {
+                return view('admin.Pengembalian.index', compact('pengembalians'));
+            } else if ($user->role == 'Pengurus') {
+                return view('pengurus.Pengembalian.index');
+            } else if ($user->role == 'Akuntan') {
+                return view('pengurus.Pengembalian.index');
+            }
+        }
+        return view('auth.login');
     }
 
     /**
@@ -67,6 +82,16 @@ class PengembalianController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function approved(Request $request, $id)
+    {
+        //
+    }
+
+    public function reject(Request $request, $id)
     {
         //
     }

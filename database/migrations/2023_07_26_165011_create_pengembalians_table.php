@@ -14,7 +14,14 @@ class CreatePengembaliansTable extends Migration
     public function up()
     {
         Schema::create('pengembalians', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id_pengembalian');
+            $table->date('tgl_pengembalian');
+            $table->string('alasan');
+            $table->unsignedBigInteger('id_kontraksewa');
+            $table->foreign('id_kontraksewa')->references('id_kontraksewa')->on('kontrak_sewas')->onDelete('cascade');
+            $table->string('status');
+            $table->string('approval');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

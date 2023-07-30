@@ -21,7 +21,6 @@ class STDealertoWahanaController extends Controller
      */
     public function index()
     {
-
         $pengajuan_pembelians = PengajuanPembelian::all();
         $transaksi_pembelians = TransaksiPembelian::all();
         $stdealertowahanas = STDealertoWahana::all();
