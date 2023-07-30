@@ -114,13 +114,13 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('/stwahanatocabang') }}">
+      <a class="nav-link" href="#">
         <i class="fas fa-fw fa-unlink"></i>
         <span>Penggantian Kendaraan</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('/stwahanatocabang') }}">
+      <a class="nav-link" href="{{ url('/pengembalian') }}">
         <i class="fas fa-fw fa-undo"></i>
         <span>Pengembalian Kendaraan</span>
       </a>
