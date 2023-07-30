@@ -40,26 +40,29 @@
         </div><br />
     @endif
 
-    <form method="post" action="#" class="container-fluid">
+    <form method="post" action="{{route('stwahanatocabang.store')}}" class="container-fluid">
         @csrf
+        <input type="text" name="id_kontraksewa" value="{{$kontraksewa->id_kontraksewa}}" hidden>
+        <input type="text" name="id_penyewa" value="{{$penyewa->id_penyewa}}" hidden>
+        <input type="text" name="id_pemakai" value="{{$pemakai->id_pemakai}}" hidden>
         <b>
         <h4 class="h4 mb-10 text-gray-800">1. Data Penerima</h4>
         <div class="form-group row">
           <div class="col-sm-6 mb-3 mb-sm-0">
             <label for="">Nama PT</label>
-            <input type="text" class="form-control" name="nama_pt" readonly>
+            <input type="text" class="form-control" name="nama_pt" value="{{$penyewa->nama_pt}}" readonly>
             <label for="">Nama Cabang</label>
-            <input type="text" class="form-control" name="nama_cabang" readonly>
+            <input type="text" class="form-control" name="nama_cabang" value="{{$penyewa->nama_cabang}}" readonly>
             <label for="">Alamat</label>
-            <input type="text" class="form-control" name="alamat" readonly>
+            <input type="text" class="form-control" name="alamat" value="{{$penyewa->alamat}}" readonly>
           </div>
           <div class="col-sm-6 mb-3 mb-sm-0">
             <label for="">Nama Penerima</label>
-            <input type="text" class="form-control" name="nama" readonly>
+            <input type="text" class="form-control" name="nama" value="{{$pemakai->nama}}" readonly>
             <label for="">Jabatan</label>
-            <input type="text" class="form-control" name="jabatan" readonly>
+            <input type="text" class="form-control" name="jabatan" value="{{$pemakai->jabatan}}" readonly>
             <label for="">No HP</label>
-            <input type="text" class="form-control" name="no_hp" readonly>
+            <input type="text" class="form-control" name="no_hp" value="{{$pemakai->no_hp}}" readonly>
           </div>
         </div>
 
@@ -68,27 +71,27 @@
             
             <div class="col-sm-12 mb-3 mb-sm-0">
               <label for="kategori">Kategori Kendaraan</label>
-              <input type="text" class="form-control" name="kategori" readonly>
+              <input type="text" class="form-control" name="kategori" value="{{$kendaraan->kategori}}" readonly>
             </div>
             <div class="col-sm-6 mb-3 mb-sm-0">
               <label for="">Merk</label>
-              <input type="text" class="form-control" name="merk" readonly>
+              <input type="text" class="form-control" name="merk" value="{{$kendaraan->merk}}" readonly>
               <label for="">Type</label>
-              <input type="text" class="form-control" name="type" readonly>
+              <input type="text" class="form-control" name="type" value="{{$kendaraan->tipe}}" readonly>
               <label for="">Tahun</label>
-              <input type="text" class="form-control" name="tahun" readonly>
+              <input type="text" class="form-control" name="tahun" value="{{$kendaraan->tahun}}" readonly>
               <label for="">Warna</label>
-              <input type="text" class="form-control" name="warna" readonly>
+              <input type="text" class="form-control" name="warna" value="{{$kendaraan->warna}}" readonly>
             </div>
             <div class="col-sm-6 mb-3 mb-sm-0">
               <label for="">Nomor Mesin</label>
-              <input type="text" class="form-control" name="no_mesin" readonly>
+              <input type="text" class="form-control" name="no_mesin" value="{{$kendaraan->no_mesin}}" readonly>
               <label for="">Nomor Rangka</label>
-              <input type="text" class="form-control" name="no_rangka" readonly>
+              <input type="text" class="form-control" name="no_rangka" value="{{$kendaraan->no_rangka}}" readonly>
               <label for="">Nomor Polisi</label>
-              <input type="text" class="form-control" name="no_polisi" readonly>
+              <input type="text" class="form-control" name="no_polisi" value="{{$kendaraan->no_polisi}}" readonly>
               <label for="">Lokasi</label>
-              <input type="text" class="form-control" name="lokasi" readonly>
+              <input type="text" class="form-control" name="lokasi" value="{{$kendaraan->lokasi}}" readonly>
             </div>
         </div>
 
@@ -96,23 +99,23 @@
         <div class="form-group row">
           <div class="col-sm-6 mb-3 mb-sm-0">
             <label for="">Cad Kunci Kontak</label>
-            <input type="text" class="form-control" name="merk" readonly>
+            <input type="text" class="form-control" name="" readonly>
             <label for="">Radio / Tape</label>
-            <input type="text" class="form-control" name="type" readonly>
+            <input type="text" class="form-control" name="" readonly>
             <label for="">Ban Serep</label>
-            <input type="text" class="form-control" name="tahun" readonly>
+            <input type="text" class="form-control" name="" readonly>
             <label for="">Kunci Ban</label>
-            <input type="text" class="form-control" name="warna" readonly>
+            <input type="text" class="form-control" name="" readonly>
           </div>
           <div class="col-sm-6 mb-3 mb-sm-0">
             <label for="">Dongkrak</label>
-            <input type="text" class="form-control" name="no_mesin" readonly>
+            <input type="text" class="form-control" name="" readonly>
             <label for="">∆ Pengaman</label>
-            <input type="text" class="form-control" name="no_rangka" readonly>
+            <input type="text" class="form-control" name="" readonly>
             <label for="">Karpet</label>
-            <input type="text" class="form-control" name="no_polisi" readonly>
+            <input type="text" class="form-control" name="" readonly>
             <label for="">Stnk & Kir</label>
-            <input type="text" class="form-control" name="lokasi" readonly>
+            <input type="text" class="form-control" name="" readonly>
           </div>
         </div>
         

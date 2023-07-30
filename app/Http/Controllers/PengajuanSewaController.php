@@ -121,6 +121,7 @@ class PengajuanSewaController extends Controller
         $pengajuan_sewa = PengajuanSewa::where('id_sppk', $id_sppk)->first();
 
         $pengajuan_sewa->approval = 'Reject';
+        $pengajuan_sewa->keterangan = $request->keterangan;
         $pengajuan_sewa->save();
 
         // Tambahkan pesan berhasil ke session

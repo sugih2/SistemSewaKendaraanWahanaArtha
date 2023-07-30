@@ -69,7 +69,7 @@
                                     <td>{{ $kendaraan->no_polisi }}</td>
                                     <td>{{ $kendaraan->merk }}</td>
                                     <td>{{ $kendaraan->tipe }}</td>
-                                    <td>{{ $kendaraan->jenis }}</td>
+                                    <td>{{ $kendaraan->kategori }}</td>
                                     <td>{{ $kendaraan->lokasi }}</td>
                                     <td>{{ $kendaraan->status }}</td>
                                     <td>{{ $kendaraan->approval }}</td>

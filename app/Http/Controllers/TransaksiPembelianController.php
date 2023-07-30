@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\TransaksiPembelian;
 use App\PengajuanPembelian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class TransaksiPembelianController extends Controller
 {
@@ -24,7 +26,19 @@ class TransaksiPembelianController extends Controller
         $revisi_pengajuan_pembelians = PengajuanPembelian::where('approval', 'Reject')->get();
         $approved_transaksi_pembelians = TransaksiPembelian::where('approval', 'Approved')->get();
         $approved_pengajuan_pembelians = PengajuanPembelian::where('approval', 'Approved')->get();
-        return view ('admin.TransaksiPembelian.index', compact('pengajuan_pembelians', 'all_transaksi_pembelians', 'revisi_transaksi_pembelians', 'proses_pengajuan_pembelians', 'proses_transaksi_pembelians', 'revisi_pengajuan_pembelians', 'approved_transaksi_pembelians', 'approved_pengajuan_pembelians', 'all_pengajuan_pembelians'));
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->role == 'Admin') {
+                return view ('admin.TransaksiPembelian.index', compact('pengajuan_pembelians', 'all_transaksi_pembelians', 'revisi_transaksi_pembelians', 'proses_pengajuan_pembelians', 'proses_transaksi_pembelians', 'revisi_pengajuan_pembelians', 'approved_transaksi_pembelians', 'approved_pengajuan_pembelians', 'all_pengajuan_pembelians'));
+            } else if ($user->role == 'Pengurus') {
+                return view('pengurus.TransaksiPembelian.index', compact('all_transaksi_pembelians', 'revisi_transaksi_pembelians', 'proses_pengajuan_pembelians', 'proses_transaksi_pembelians', 'revisi_pengajuan_pembelians', 'approved_transaksi_pembelians', 'approved_pengajuan_pembelians', 'all_pengajuan_pembelians'));
+            } else if ($user->role == 'Akuntan') {
+                return view('akuntan.TransaksiPembelian.index', compact('all_transaksi_pembelians'));
+            }
+        }
+        return view('auth.login');
+        
     }
 
     public function approval()
@@ -135,8 +149,8 @@ class TransaksiPembelianController extends Controller
         $transaksi_pembelian = TransaksiPembelian::where('id_transaksipembelian', $id_transaksipembelian)->first();
         
         $transaksi_pembelian->approval = 'Reject';
+        $transaksi_pembelian->keterangan = $request->keterangan;
         $transaksi_pembelian->save();
-        $transaksi_pembelian->update($request->all());
 
         // Tambahkan pesan berhasil ke session
         session()->flash('reject', 'Transaksi Pembelian Kendaraan berhasil di Reject');

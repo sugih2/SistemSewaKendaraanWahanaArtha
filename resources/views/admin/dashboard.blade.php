@@ -39,7 +39,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Stock Kendaraan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ App\Kendaraan::where('approval', 'approved')->count() }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ App\Kendaraan::where('status', 'Stock')->count() }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-car fa-2x text-gray-300"></i>
@@ -57,7 +57,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Kendaraan Disewa</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ App\Kendaraan::where('status', 'Disewa')->count() }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-taxi fa-2x text-gray-300"></i>
@@ -74,8 +74,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Pemasukan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                    Pemasukan (Dari Biaya Sewa)</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ formatRupiah($totalBiayaSewa) }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -238,7 +238,16 @@
 
 
   @include('layout.footer')
+  @php
+    function formatRupiah($angka) {
+        $bilangan = round($angka); // Bulatkan ke angka bulat terdekat
 
+        // Format angka sebagai format ribuan dengan tanda titik sebagai pemisah ribuan
+        $hasil = number_format($bilangan, 0, ',', '.');
+
+        return 'Rp ' . $hasil;
+    }
+  @endphp
 </body>
 
 </html>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\PengajuanPembelian;
 use App\PengajuanSewa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 use PDF;
 
 class PengajuanPembelianController extends Controller
@@ -18,14 +20,19 @@ class PengajuanPembelianController extends Controller
     {
         $pengajuan_pembelians = PengajuanPembelian::all();
         $pengajuan_sewas = PengajuanSewa::where('approval', 'Approved')->where('status', 'Approved')->get();
+        $approval_pengajuan_pembelians = PengajuanPembelian::where('approval', 'Proses Approval')->get();
         $revisi_pengajuan_pembelians = PengajuanPembelian::where('approval', 'Reject')->get();
-        return view ('admin.pengajuanpembelian.index', compact('pengajuan_pembelians', 'pengajuan_sewas', 'revisi_pengajuan_pembelians'));
-    }
-
-    public function approval()
-    {
-        $pengajuan_pembelians = PengajuanPembelian::where('approval', 'Proses Approval')->get();
-        return view('pengurus.PengajuanPembelian.approval', compact('pengajuan_pembelians'));
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->role == 'Admin') {
+                return view('admin.pengajuanpembelian.index', compact('pengajuan_pembelians', 'pengajuan_sewas', 'revisi_pengajuan_pembelians'));
+            } else if ($user->role == 'Pengurus') {
+                return view('pengurus.pengajuanpembelian.index', compact('pengajuan_pembelians', 'approval_pengajuan_pembelians'));
+            } else if ($user->role == 'Akuntan') {
+                return view('akuntan.pengajuanpembelian.index', compact('pengajuan_pembelians'));
+            }
+        }
+        return view('auth.login');
     }
 
     public function revisi()
@@ -112,7 +119,7 @@ class PengajuanPembelianController extends Controller
         $pengajuan_pembelian->save();
 
         // Redirect atau tampilkan pesan berhasil
-        return redirect()->route('pengajuanpembelian.revisi', $pengajuan_pembelian->id_pengajuanpembelian)->with('success', 'Data pengajuan pembelian berhasil direvisi.');
+        return redirect()->route('pengajuanpembelian.index', $pengajuan_pembelian->id_pengajuanpembelian)->with('success', 'Data pengajuan pembelian berhasil direvisi.');
     }
 
     public function approved(Request $request, $id_pengajuanpembelian)

@@ -181,7 +181,7 @@
   <div class="col-lg-6 mb-4">
       <div class="card shadow mb-4">
           <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Daftar Antrian Serah Terima Dealer to Wahana</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Daftar Antrian Kontrak Sewa (SPPK)</h6>
           </div>
           <div class="card-body">
               <div class="table-responsive">
@@ -294,7 +294,7 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$revisi_kontrak_sewa->id_kontraksewa}}</td>
                             <td>
-                              <a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                              <a href="{{ route('kontraksewa.edit', $revisi_kontrak_sewa->id_kontraksewa) }}" class="btn btn-primary btn-icon-split btn-sm">
                                   <span class="icon text-white-50">
                                       <i class="fas fa-edit"></i>
                                   </span>

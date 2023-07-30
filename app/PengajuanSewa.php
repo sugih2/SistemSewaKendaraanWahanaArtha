@@ -13,4 +13,8 @@ class PengajuanSewa extends Model
                         'nama', 'no_hp', 'jabatan',
                         'tgl_awal', 'tgl_akhir', 'biaya_sewa', 'keterangan', 'status', 'approval'];
 
+    public function pengajuanPembelian()
+    {
+        return $this->belongsTo(PengajuanPembelian::class, 'id_sppk');
+    }                    
 }
